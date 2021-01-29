@@ -25,7 +25,6 @@ public class Quest : MonoBehaviour, IQuest
     private Action _onActive;
     private List<IQuestOption> _questOptions = new List<IQuestOption>();
     private Action _onFailed;
-
     #endregion
 
 
@@ -40,11 +39,6 @@ public class Quest : MonoBehaviour, IQuest
                 Available = true;
         }
     #endregion
-
-    void AnnounceUpdate()
-    {
-        QuestTracker.Instance.QuestUpdated(this);
-    }
 
     #region PublicProperties
 
@@ -80,7 +74,6 @@ public class Quest : MonoBehaviour, IQuest
                 available = value;
                 if(available)
                     OnAvailable?.Invoke();
-                AnnounceUpdate();
             }
         }
 
@@ -92,7 +85,6 @@ public class Quest : MonoBehaviour, IQuest
                 active = value;
                 if (active)
                     OnActive?.Invoke();
-                AnnounceUpdate();
             }
         }
 
@@ -102,9 +94,10 @@ public class Quest : MonoBehaviour, IQuest
             set
             {
                 completed = value;
+                Active = false;
+                Available = false;
                 if(completed)
                     OnComplete?.Invoke();
-                AnnounceUpdate();
             }
         }
 
@@ -114,9 +107,9 @@ public class Quest : MonoBehaviour, IQuest
             set 
             {
                 failed = value;
+                Active = false;
                 if(failed)
                     OnFailed?.Invoke();
-                AnnounceUpdate();
             }
         }
 

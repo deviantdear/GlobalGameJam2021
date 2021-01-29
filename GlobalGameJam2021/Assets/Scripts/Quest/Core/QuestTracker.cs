@@ -30,7 +30,31 @@ public class QuestTracker : MonoBehaviour
         get => FindCompletedQuests(quests);
     }
 
-    public Action onQuestUpdated = null;
+    public Action<QuestUpdateArgs> onQuestUpdated = null;
+
+    public struct QuestUpdateArgs
+    {
+        public List<IQuest> Activated;
+        public List<IQuest> Available;
+        public List<IQuest> Completed;
+        public List<IQuest> Failed;
+
+        public bool UpdateAvailable()
+        {
+            return Activated.Count > 0 || Available.Count > 0 || Completed.Count > 0 || Failed.Count > 0;
+        }
+
+        public void Reset()
+        {
+            Activated = new List<IQuest>();
+            Available = new List<IQuest>();
+            Completed = new List<IQuest>();
+            Failed = new List<IQuest>();
+        }
+    }
+
+    private QuestUpdateArgs currentUpdates;
+    
 
     void Awake()
     {
@@ -38,6 +62,8 @@ public class QuestTracker : MonoBehaviour
             Destroy(gameObject);
         else
             Instance = this;
+        currentUpdates = new QuestUpdateArgs();
+        currentUpdates.Reset();
     }
 
     /// <summary>
@@ -49,12 +75,48 @@ public class QuestTracker : MonoBehaviour
         if (quest == null)
             return;
         Instance.quests.Add(quest.Name, quest);
+
+        quest.OnActive += ()=>Instance.ActiveUpdate(quest);
+        quest.OnAvailable += () => Instance.AvailableUpdate(quest);
+        quest.OnComplete += () => Instance.CompletedUpdate(quest);
+        quest.OnFailed += () => Instance.FailedUpdate(quest);
     }
 
-    public void QuestUpdated(IQuest quest)
+    void ActiveUpdate(IQuest quest)
     {
-        onQuestUpdated?.Invoke();
+        if (currentUpdates.Activated == null)
+            currentUpdates.Activated = new List<IQuest>();
+        currentUpdates.Activated.Add(quest);
     }
+    void AvailableUpdate(IQuest quest)
+    {
+        if (currentUpdates.Available == null)
+            currentUpdates.Available = new List<IQuest>();
+        currentUpdates.Available.Add(quest);
+    }
+    void CompletedUpdate(IQuest quest)
+    {
+        if (currentUpdates.Completed == null)
+            currentUpdates.Completed = new List<IQuest>();
+        currentUpdates.Completed.Add(quest);
+    }
+    void FailedUpdate(IQuest quest)
+    {
+        if (currentUpdates.Failed == null)
+            currentUpdates.Failed = new List<IQuest>();
+        currentUpdates.Failed.Add(quest);
+    }
+
+    private void LateUpdate()
+    {
+        if (currentUpdates.UpdateAvailable())
+        {
+            onQuestUpdated?.Invoke(currentUpdates);
+            currentUpdates.Reset();
+        }
+        
+    }
+
 
     Dictionary<string, IQuest> FindAvailableQuests(Dictionary<string, IQuest> input)
     {

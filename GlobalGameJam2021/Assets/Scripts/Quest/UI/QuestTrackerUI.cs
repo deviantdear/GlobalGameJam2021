@@ -11,7 +11,6 @@ public class QuestTrackerUI : MonoBehaviour
     private void Start()
     {
         QuestTracker.Instance.onQuestUpdated += UpdateActiveQuestList;
-        UpdateActiveQuestList();
     }
 
     private void OnDestroy()
@@ -19,7 +18,7 @@ public class QuestTrackerUI : MonoBehaviour
         QuestTracker.Instance.onQuestUpdated -= UpdateActiveQuestList;
     }
 
-    void UpdateActiveQuestList()
+    void UpdateActiveQuestList(QuestTracker.QuestUpdateArgs updateArgs)
     {
         ClearContainer(activeQuestList);
         foreach (var item in QuestTracker.Instance.ActiveQuests)
