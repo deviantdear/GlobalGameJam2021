@@ -16,7 +16,7 @@ public interface IQuestOption
     /// <summary>
     /// Quest this is attached to
     /// </summary>
-    IQuest Quest { get; set; }
+    IQuest Quest { get; }
     /// <summary>
     /// Make available to the quest
     /// </summary>

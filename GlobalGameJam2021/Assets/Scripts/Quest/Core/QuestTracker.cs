@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 public class QuestTracker : MonoBehaviour
 {
-    public static QuestTracker Instance { get; set; }
+    public static QuestTracker Instance;
     private Dictionary<string, IQuest> quests = new Dictionary<string, IQuest>();
     public ReadOnlyDictionary<string, IQuest> Quests
     {
@@ -18,29 +19,41 @@ public class QuestTracker : MonoBehaviour
     {
         get => FindAvailableQuests(quests);
     }
+    
+    public Dictionary<string, IQuest> ActiveQuests
+    {
+        get => FindActiveQuests(quests);
+    }
 
     public Dictionary<string, IQuest> CompletedQuests
     {
         get => FindCompletedQuests(quests);
     }
-    
+
+    public Action onQuestUpdated = null;
+
     void Awake()
     {
-        if (!QuestTracker.Instance)
-            Instance = this;
+        if (Instance != null)
+            Destroy(gameObject);
         else
-            Destroy(this);
+            Instance = this;
     }
 
     /// <summary>
-    /// Attach quest refrence to the tracker
+    /// Attach quest reference to the tracker
     /// </summary>
     /// <param name="quest"></param>
-    public static void AddRefrence(IQuest quest)
+    public static void AddReference(IQuest quest)
     {
         if (quest == null)
             return;
         Instance.quests.Add(quest.Name, quest);
+    }
+
+    public void QuestUpdated(IQuest quest)
+    {
+        onQuestUpdated?.Invoke();
     }
 
     Dictionary<string, IQuest> FindAvailableQuests(Dictionary<string, IQuest> input)
@@ -51,6 +64,20 @@ public class QuestTracker : MonoBehaviour
             if (item.Value == null)
                 continue;
             if (item.Value.Available)
+                response.Add(item.Key, item.Value);
+        }
+
+        return response;
+    }
+
+    Dictionary<string, IQuest> FindActiveQuests(Dictionary<string, IQuest> input)
+    {
+        Dictionary<string, IQuest> response = new Dictionary<string, IQuest>();
+        foreach (var item in input)
+        {
+            if (item.Value == null)
+                continue;
+            if (item.Value.Active)
                 response.Add(item.Key, item.Value);
         }
 

@@ -11,6 +11,10 @@ public class Quest : MonoBehaviour, IQuest
     [SerializeField] private string summary;
     [SerializeField] private string subject;
     [SerializeField] private string description;
+    [SerializeField] private bool available;
+    [SerializeField] private bool completed;
+    [SerializeField] private bool active;
+    [SerializeField] private bool failed;
     #endregion
 
     #region PropertyContainers
@@ -18,10 +22,6 @@ public class Quest : MonoBehaviour, IQuest
     private Action _onAvailable;
     private Action _onBegin;
     private Action _onComplete;
-    private bool _available;
-    private bool _completed;
-    private bool _active;
-    private bool _failed;
     private Action _onActive;
     private List<IQuestOption> _questOptions = new List<IQuestOption>();
     private Action _onFailed;
@@ -33,10 +33,18 @@ public class Quest : MonoBehaviour, IQuest
     #region MonoBehaviorTriggers
         void Start()
         {
-            QuestTracker.AddRefrence(this);
+            QuestTracker.AddReference(this);
+            if (active)
+                Active = true;
+            if (available)
+                Available = true;
         }
     #endregion
 
+    void AnnounceUpdate()
+    {
+        QuestTracker.Instance.QuestUpdated(this);
+    }
 
     #region PublicProperties
 
@@ -66,45 +74,49 @@ public class Quest : MonoBehaviour, IQuest
 
         public bool Available
         {
-            get => _available;
+            get => available;
             set
             {
-                _available = value;
-                if(_available)
+                available = value;
+                if(available)
                     OnAvailable?.Invoke();
+                AnnounceUpdate();
             }
         }
 
         public bool Active
         {
-            get => _active;
+            get => active;
             set
             {
-                _active = value;
-                if (_active)
+                active = value;
+                if (active)
                     OnActive?.Invoke();
+                AnnounceUpdate();
             }
         }
 
         public bool Completed
         {
-            get => _completed;
+            get => completed;
             set
             {
-                _completed = value;
-                if(_completed)
+                completed = value;
+                if(completed)
                     OnComplete?.Invoke();
+                AnnounceUpdate();
             }
         }
 
         public bool Failed
         {
-            get => _failed;
+            get => failed;
             set 
             {
-                _failed = value;
-                if(_failed)
+                failed = value;
+                if(failed)
                     OnFailed?.Invoke();
+                AnnounceUpdate();
             }
         }
 

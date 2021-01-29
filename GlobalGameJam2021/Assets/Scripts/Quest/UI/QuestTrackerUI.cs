@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,32 @@ public class QuestTrackerUI : MonoBehaviour
     [SerializeField] private QuestItemUI questItemUIPrefab = null;
     [SerializeField] private Transform activeQuestList = null;
 
-    private List<GameObject> questItemUIs = new List<GameObject>();
-    
-    
+    private void Start()
+    {
+        QuestTracker.Instance.onQuestUpdated += UpdateActiveQuestList;
+        UpdateActiveQuestList();
+    }
+
+    private void OnDestroy()
+    {
+        QuestTracker.Instance.onQuestUpdated -= UpdateActiveQuestList;
+    }
+
+    void UpdateActiveQuestList()
+    {
+        ClearContainer(activeQuestList);
+        foreach (var item in QuestTracker.Instance.ActiveQuests)
+        {
+            Instantiate(questItemUIPrefab, activeQuestList).Set(item.Value);
+        }
+    }
+
+    void ClearContainer(Transform container)
+    {
+        foreach (Transform child in container)
+        {
+            Destroy(child);
+        }
+    }
     
 }

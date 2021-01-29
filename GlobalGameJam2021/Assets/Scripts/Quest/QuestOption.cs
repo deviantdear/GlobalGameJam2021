@@ -7,7 +7,7 @@ public class QuestOption : MonoBehaviour, IQuestOption
 {
     #region InspectorFields
 
-    [SerializeField] private IQuest quest;
+    [SerializeField] private Quest quest;
     [SerializeField] private string title;
     [SerializeField] private bool available;
     [SerializeField] private bool completeQuest = false;
@@ -48,7 +48,6 @@ public class QuestOption : MonoBehaviour, IQuestOption
     public IQuest Quest
     {
         get => quest;
-        set => quest = value;
     }
 
     public bool Available

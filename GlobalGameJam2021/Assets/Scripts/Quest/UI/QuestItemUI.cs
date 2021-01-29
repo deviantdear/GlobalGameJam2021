@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuestItemUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TextMeshProUGUI titleField = null;
+    [SerializeField] private TextMeshProUGUI summaryField = null;
 
-    // Update is called once per frame
-    void Update()
+    public void Set(IQuest data)
     {
-        
+        titleField.text = data.Name;
+        summaryField.text = data.Summary;
     }
 }
