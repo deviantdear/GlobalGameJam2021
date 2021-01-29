@@ -21,7 +21,10 @@ public class Quest : MonoBehaviour, IQuest
     private bool _available;
     private bool _completed;
     private bool _active;
+    private bool _failed;
     private Action _onActive;
+    private List<IQuestOption> _questOptions = new List<IQuestOption>();
+    private Action _onFailed;
 
     #endregion
 
@@ -94,6 +97,17 @@ public class Quest : MonoBehaviour, IQuest
             }
         }
 
+        public bool Failed
+        {
+            get => _failed;
+            set 
+            {
+                _failed = value;
+                if(_failed)
+                    OnFailed?.Invoke();
+            }
+        }
+
         public Action OnAvailable
         {
             get => _onAvailable;
@@ -111,7 +125,19 @@ public class Quest : MonoBehaviour, IQuest
             get => _onComplete;
             set => _onComplete = value;
         }
-        
-    #endregion
+
+        public Action OnFailed
+        {
+            get => _onFailed;
+            set => _onFailed = value;
+        }
+
+        public List<IQuestOption> QuestOptions
+        {
+            get => _questOptions;
+            set => _questOptions = value;
+        }
+
+        #endregion
 
 }

@@ -34,6 +34,10 @@ public interface IQuest
     /// </summary>
     bool Completed { get; set; }
     /// <summary>
+    /// Marks the quest as failed
+    /// </summary>
+    bool Failed { get; set; }
+    /// <summary>
     /// Triggers when quest is active
     /// </summary>
     Action OnActive { get; set; }
@@ -45,4 +49,12 @@ public interface IQuest
     /// Triggers when the quest completes
     /// </summary>
     Action OnComplete { get; set; }
+    /// <summary>
+    /// Triggers when the quest is failed
+    /// </summary>
+    Action OnFailed { get; set; }
+    /// <summary>
+    /// Options added manually or later on as they are triggered.
+    /// </summary>
+    List<IQuestOption> QuestOptions { get; set; }
 }
