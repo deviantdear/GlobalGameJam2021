@@ -14,26 +14,35 @@ public interface IQuest
     /// </summary>
     string Summary { get; set; }
     /// <summary>
+    /// Subject of the quest
+    /// </summary>
+    string Subject { get; set; }
+    /// <summary>
+    /// Quest Description
+    /// </summary>
+    string Description { get; set; }
+    /// <summary>
     /// Marks the quest as available
     /// </summary>
     bool Available { get; set; }
+    /// <summary>
+    /// Marks the quest as active
+    /// </summary>
+    bool Active { get; set; }
     /// <summary>
     /// Marks the quest as completed
     /// </summary>
     bool Completed { get; set; }
     /// <summary>
-    /// Triggers when quest is begun
+    /// Triggers when quest is active
     /// </summary>
-    Action OnBegin { get; set; }
+    Action OnActive { get; set; }
     /// <summary>
     /// Triggers when the quest becomes available
     /// </summary>
     Action OnAvailable { get; set; }
     /// <summary>
-    /// Triggers when the quest completes. Bool property is true if the quest was completed successfully.
-    /// True = Quest completed
-    /// False = Failed quest
+    /// Triggers when the quest completes
     /// </summary>
-    Action<bool> OnComplete { get; set; }
-    
+    Action OnComplete { get; set; }
 }

@@ -6,31 +6,32 @@ using UnityEngine.Serialization;
 
 public class Quest : MonoBehaviour, IQuest
 {
+    #region InspectorFields
+    
     [SerializeField] private string summary;
+    [SerializeField] private string subject;
+    [SerializeField] private string description;
+    #endregion
+
+    #region PropertyContainers
+    
     private Action _onAvailable;
     private Action _onBegin;
-    private Action<bool> _onComplete;
+    private Action _onComplete;
     private bool _available;
     private bool _completed;
-    /// <summary>
-    /// The quests that will be enabled when player completes this one
-    /// </summary>
-    [SerializeField] private List<IQuest> nextQuests = new List<IQuest>();
+    private bool _active;
+    private Action _onActive;
+
+    #endregion
+
+
 
     #region MonoBehaviorTriggers
-
-        // Start is called before the first frame update
         void Start()
         {
             QuestTracker.AddRefrence(this);
         }
-    
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-
     #endregion
 
 
@@ -48,16 +49,49 @@ public class Quest : MonoBehaviour, IQuest
             set => summary = value;
         }
 
+        public string Subject
+        {
+            get => subject;
+            set => subject = value;
+        }
+
+        public string Description
+        {
+            get => description;
+            set => description = value;
+        }
+
         public bool Available
         {
             get => _available;
-            set => _available = value;
+            set
+            {
+                _available = value;
+                if(_available)
+                    OnAvailable?.Invoke();
+            }
+        }
+
+        public bool Active
+        {
+            get => _active;
+            set
+            {
+                _active = value;
+                if (_active)
+                    OnActive?.Invoke();
+            }
         }
 
         public bool Completed
         {
             get => _completed;
-            set => _completed = value;
+            set
+            {
+                _completed = value;
+                if(_completed)
+                    OnComplete?.Invoke();
+            }
         }
 
         public Action OnAvailable
@@ -66,13 +100,13 @@ public class Quest : MonoBehaviour, IQuest
             set => _onAvailable = value;
         }
 
-        public Action OnBegin
+        public Action OnActive
         {
-            get => _onBegin;
-            set => _onBegin = value;
+            get => _onActive;
+            set => _onActive = value;
         }
 
-        public Action<bool> OnComplete
+        public Action OnComplete
         {
             get => _onComplete;
             set => _onComplete = value;

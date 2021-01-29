@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class QuestTrackerUI : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private QuestItemUI questItemUIPrefab = null;
+    [SerializeField] private Transform activeQuestList = null;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private List<GameObject> questItemUIs = new List<GameObject>();
+    
+    
+    
 }
