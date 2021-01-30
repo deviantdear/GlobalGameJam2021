@@ -1,5 +1,6 @@
 {
   "dependencies": {
+
     "com.unity.2d.animation": {
       "version": "4.2.8",
       "depth": 0,
@@ -23,6 +24,7 @@
       },
       "url": "https://packages.unity.com"
     },
+
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
