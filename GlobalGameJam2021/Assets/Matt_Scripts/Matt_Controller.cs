@@ -31,7 +31,7 @@ public class Matt_Controller : MonoBehaviour
         gameOver = false;
         score = 0;
         obstacleScoreValue = 10;
-        scoreToWin = 600;
+        scoreToWin = 650;
 
         scoreText.text = "Score: " + score;
         gameStatusText.text = "";

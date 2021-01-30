@@ -149,7 +149,7 @@ public class Matt_Spawner : MonoBehaviour
                     //objectsToIncreaseSpeed = (int)(objectsToIncreaseSpeed + (float)objectsToIncreaseSpeed % .1f); // increase obstacles needed to reach next difficulty
                 }
             }
-            else if (tickCount > ticksBetweenSpawns * 3 && maxObjects && winSpawned == false)
+            else if (tickCount > ticksBetweenSpawns * 2 && maxObjects && winSpawned == false)
             {
                 Instantiate(winObject, new Vector3(this.gameObject.transform.position.x, 0f, 0f), Quaternion.identity);
                 winSpawned = true;
