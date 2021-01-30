@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7761114796210536251}
   m_Layer: 0
   m_Name: Matt_Obstacle_Prefab3
-  m_TagString: Untagged
+  m_TagString: Matt_Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

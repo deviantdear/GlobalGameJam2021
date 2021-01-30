@@ -6,35 +6,63 @@ public class Matt_Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] obstacles; // 0 = flying, 1 = ground
 
-    [SerializeField] int leastDifficultPrefab = 0;
-    [SerializeField] int mostDifficultPrefab = 3;
+    [SerializeField] int leastDifficultPrefab;
+    [SerializeField] int mostDifficultPrefab;
 
-    int tiersToIncreasePrefabDifficulty = 0;
+    int tiersToIncreasePrefabDifficulty;
     [SerializeField] private GameObject winObject;
     [SerializeField] private Matt_Controller gameController;
 
-    [SerializeField] private int tickCount = 0;
-    //[SerializeField] private int[] scoreThresholds = [0, 150, 300, 450, 600, 750, 1000];
-    //[SerializeField] private int[] tickSpeeds = [1200, 1100, 1000, 900, 800, 700, 600];
-    private int ticksBetweenSpawns = 1300;
-    private int minimumTicksBetweenSpawns = 700; // hardest speed
+    [SerializeField] private int tickCount;
 
-    private bool spawnedMaxObjects = false; // if the spawner has created enough objects to reach the score needed to win
+    private int ticksBetweenSpawns;
+    private int minimumTicksBetweenSpawns; // hardest speed
 
-    private int prefabsSpawnedTotal = 0;
-    private int prefabsSpawnedSinceChange = 0;
-    private int prefabsToIncreaseSpeed = 5;
+    private bool spawnedMaxObjects; // if the spawner has created enough objects to reach the score needed to win
 
-    private int obstaclesSpawnedTotal = 0;
-    private int obstaclesSpawnedSinceChange = 0;
-    private int objectsToIncreaseSpeed = 5;
+    private int prefabsSpawnedTotal;
+    private int prefabsSpawnedSinceChange;
+    private int prefabsToIncreaseSpeed;
 
-    bool maxObjects = false;
-    bool winSpawned = false;
+    private int obstaclesSpawnedTotal;
+    private int obstaclesSpawnedSinceChange;
+    private int objectsToIncreaseSpeed;
+
+    bool maxObjects;
+    bool winSpawned;
+
+
+
+    public void Initialize()
+    {
+        leastDifficultPrefab = 0;
+        mostDifficultPrefab = 3;
+
+        tiersToIncreasePrefabDifficulty = 0;
+
+        ticksBetweenSpawns = 1300;
+        minimumTicksBetweenSpawns = 700; // hardest speed
+
+        tickCount = ticksBetweenSpawns - 200; // spwns the first object nearly immediately
+
+        spawnedMaxObjects = false; // if the spawner has created enough objects to reach the score needed to win
+
+        prefabsSpawnedTotal = 0;
+        prefabsSpawnedSinceChange = 0;
+        prefabsToIncreaseSpeed = 5;
+
+        obstaclesSpawnedTotal = 0;
+        obstaclesSpawnedSinceChange = 0;
+        objectsToIncreaseSpeed = 5;
+
+        maxObjects = false;
+        winSpawned = false;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        Initialize();
         gameController = GameObject.FindGameObjectWithTag("Matt_Controller").GetComponent<Matt_Controller>();
     }
 

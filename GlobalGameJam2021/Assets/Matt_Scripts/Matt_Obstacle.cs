@@ -10,7 +10,7 @@ public class Matt_Obstacle: MonoBehaviour
     private int scoreValue;
     private bool scoreCounted = false;
     private float moveVelocity = 0f;
-    private float offScreenLimit = -20;
+    private float offScreenLimit = -25;
     private bool gameOver = false;
 
     // Start is called before the first frame update
@@ -58,6 +58,7 @@ public class Matt_Obstacle: MonoBehaviour
 
         if (this.gameObject.transform.position.x < player.transform.position.x + offScreenLimit )
         {
+            Destroy(this.gameObject.transform.parent.gameObject);
             Destroy(this.gameObject);
         }
     }

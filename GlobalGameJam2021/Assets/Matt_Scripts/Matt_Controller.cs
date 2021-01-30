@@ -5,22 +5,43 @@ using UnityEngine.UI;
 
 public class Matt_Controller : MonoBehaviour
 {
-    private float basePlayerJumpVelocity = 12f;
-    [SerializeField] private float playerJumpVelocity = 12f;
-    [SerializeField] private float obstacleMoveVelcoity = 8f;
-    [SerializeField] private bool gameActive = true;
-    [SerializeField] private int score = 0;
-    [SerializeField] private int obstacleScoreValue = 10;
-    [SerializeField] private int scoreToWin = 500;
+    private float basePlayerJumpVelocity;
+    [SerializeField] private float playerJumpVelocity;
+    [SerializeField] private float obstacleMoveVelcoity;
+    [SerializeField] private bool gameActive;
+    [SerializeField] private bool gameOver;
+    [SerializeField] private int score;
+    [SerializeField] private int obstacleScoreValue;
+    [SerializeField] private int scoreToWin;
+
+    bool gameRestarted = false;
 
     [SerializeField] private Text gameStatusText;
     [SerializeField] private Text scoreText;
 
+    [SerializeField] Matt_Spawner spawner;
+
+
+    void Initialize()
+    {
+        basePlayerJumpVelocity = 15f;
+        playerJumpVelocity = 15f;
+        obstacleMoveVelcoity = 8f;
+        gameActive = true;
+        gameOver = false;
+        score = 0;
+        obstacleScoreValue = 10;
+        scoreToWin = 600;
+
+        scoreText.text = "Score: " + score;
+        gameStatusText.text = "";
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Initialize();
+        spawner = GameObject.FindGameObjectWithTag("Matt_Spawner").GetComponent<Matt_Spawner>();
     }
 
     // Update is called once per frame
@@ -35,8 +56,12 @@ public class Matt_Controller : MonoBehaviour
         {
 
         }
-        else
+        else if (gameOver == true)
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RestartGame();
+            }
 
         }
     }
@@ -47,6 +72,10 @@ public class Matt_Controller : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    public bool GetGameOver()
+    {
+        return gameOver;
+    }
 
     public bool GetGameActive()
     {
@@ -96,15 +125,45 @@ public class Matt_Controller : MonoBehaviour
 
     public void GameOver()
     {
-        if (gameActive)
+        if (gameActive && !gameOver)
         {
             //Debug.Log("Game Over");
-            gameStatusText.text = "Game Over";
+            gameStatusText.text = "Game Over - Press R to Restart";
             gameActive = false;
+            gameOver = true;
             playerJumpVelocity = 0;
             obstacleMoveVelcoity = 0f;
         }
     }
 
+
+    public void DeleteAllObstacles()
+    {
+        GameObject[] Obstacles = GameObject.FindGameObjectsWithTag("Matt_Obstacle");
+
+        foreach(var obstacle in Obstacles)
+        {
+            Destroy(obstacle.gameObject);
+        }        
+    }
+
+    public void DeleteWin()
+    {
+        GameObject[] Obstacles = GameObject.FindGameObjectsWithTag("Matt_Win");
+
+        foreach (var obstacle in Obstacles)
+        {
+            Destroy(obstacle.gameObject);
+        }
+    }
+
+    public void RestartGame()
+    {
+        gameRestarted = true;
+        DeleteAllObstacles();
+        DeleteWin();
+        spawner.Initialize();
+        Initialize();     
+    }
 
 }
