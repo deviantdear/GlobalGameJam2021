@@ -76,10 +76,10 @@ public class QuestTracker : MonoBehaviour
             return;
         Instance.quests.Add(quest.Name, quest);
 
-        quest.OnActive += ()=>Instance.ActiveUpdate(quest);
-        quest.OnAvailable += () => Instance.AvailableUpdate(quest);
-        quest.OnComplete += () => Instance.CompletedUpdate(quest);
-        quest.OnFailed += () => Instance.FailedUpdate(quest);
+        quest.OnActive += (state)=>Instance.ActiveUpdate(quest);
+        quest.OnAvailable += (state) => Instance.AvailableUpdate(quest);
+        quest.OnComplete += (state) => Instance.CompletedUpdate(quest);
+        quest.OnFailed += (state) => Instance.FailedUpdate(quest);
     }
 
     void ActiveUpdate(IQuest quest)

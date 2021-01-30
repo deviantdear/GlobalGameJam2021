@@ -5,11 +5,12 @@ using UnityEngine;
 public class QuestTrigger_Quest : QuestTrigger
 {
     [SerializeField] private Quest watchedQuest = null;
-    [SerializeField] private QuestTriggerOption triggerOnState = QuestTriggerOption.SetCompleted;
+    [SerializeField] private QuestTriggerOption triggerOnAction = QuestTriggerOption.SetCompleted;
+    [SerializeField] private bool triggerOnActionState = true;
 
     private void Start()
     {
-        switch (triggerOnState)
+        switch (triggerOnAction)
         {
             case QuestTriggerOption.SetActive:
                 watchedQuest.OnActive += Trigger;
@@ -26,9 +27,15 @@ public class QuestTrigger_Quest : QuestTrigger
         }
     }
 
+    void Trigger(bool state)
+    {
+        if(triggerOnActionState == state)
+            Trigger();
+    }
+
     private void OnDestroy()
     {
-        switch (triggerOnState)
+        switch (triggerOnAction)
         {
             case QuestTriggerOption.SetActive:
                 watchedQuest.OnActive -= Trigger;

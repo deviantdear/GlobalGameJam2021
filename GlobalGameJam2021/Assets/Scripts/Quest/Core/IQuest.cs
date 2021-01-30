@@ -40,19 +40,19 @@ public interface IQuest
     /// <summary>
     /// Triggers when quest is active
     /// </summary>
-    Action OnActive { get; set; }
+    Action<bool> OnActive { get; set; }
     /// <summary>
     /// Triggers when the quest becomes available
     /// </summary>
-    Action OnAvailable { get; set; }
+    Action<bool> OnAvailable { get; set; }
     /// <summary>
     /// Triggers when the quest completes
     /// </summary>
-    Action OnComplete { get; set; }
+    Action<bool> OnComplete { get; set; }
     /// <summary>
     /// Triggers when the quest is failed
     /// </summary>
-    Action OnFailed { get; set; }
+    Action<bool> OnFailed { get; set; }
     /// <summary>
     /// Options added manually or later on as they are triggered.
     /// </summary>

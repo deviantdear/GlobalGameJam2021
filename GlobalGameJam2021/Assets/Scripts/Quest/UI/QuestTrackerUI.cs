@@ -23,12 +23,16 @@ public class QuestTrackerUI : MonoBehaviour
     {
         foreach (var item in updateArgs.Activated)
         {
-            if (!spawnedUi.ContainsKey(item))
+            if (item.Available && !spawnedUi.ContainsKey(item))
             {
                 spawnedUi.Add(
                     item, 
                     Instantiate(questItemUIPrefab, activeQuestListContainer));
                 spawnedUi[item].Set(item);
+            }
+            else if(!item.Available && spawnedUi.ContainsKey(item))
+            {
+                RemoveItem(item);
             }
         }
         

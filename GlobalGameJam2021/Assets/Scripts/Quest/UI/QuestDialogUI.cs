@@ -36,7 +36,7 @@ public class QuestDialogUI : MonoBehaviour
     {
         foreach (Transform option in optionListContainer)
         {
-            Destroy(option);
+            Destroy(option.gameObject);
         }
     }
 }

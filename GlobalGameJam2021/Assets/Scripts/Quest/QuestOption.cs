@@ -12,6 +12,8 @@ public class QuestOption : MonoBehaviour, IQuestOption
     [SerializeField] private bool available;
     [SerializeField] private bool completeQuest = false;
     [SerializeField] private bool failQuest = false;
+    [SerializeField] private bool cancelQuest = false;
+    [SerializeField] private bool setQuestUnavailable = false;
 
     #endregion
     #region PropertyContainers
@@ -76,6 +78,10 @@ public class QuestOption : MonoBehaviour, IQuestOption
             quest.Completed = true;
         if (failQuest)
             quest.Failed = true;
+        if (cancelQuest)
+            quest.Active = false;
+        if (setQuestUnavailable)
+            quest.Available = false;
         OnSelect?.Invoke();
     }
 

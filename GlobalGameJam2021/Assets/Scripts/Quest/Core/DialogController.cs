@@ -19,7 +19,10 @@ public class DialogController : MonoBehaviour
     {
         foreach (var item in args.Activated)
         {
-            OpenDialog(item);
+            if (item.Active)
+                OpenDialog(item);
+            else
+                CloseDialog(item);
         }
 
         foreach (var item in args.Completed)

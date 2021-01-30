@@ -19,12 +19,12 @@ public class Quest : MonoBehaviour, IQuest
 
     #region PropertyContainers
     
-    private Action _onAvailable;
-    private Action _onBegin;
-    private Action _onComplete;
-    private Action _onActive;
+    private Action<bool> _onAvailable;
+    private Action<bool> _onBegin;
+    private Action<bool> _onComplete;
+    private Action<bool> _onActive;
     private List<IQuestOption> _questOptions = new List<IQuestOption>();
-    private Action _onFailed;
+    private Action<bool> _onFailed;
     #endregion
 
 
@@ -72,8 +72,7 @@ public class Quest : MonoBehaviour, IQuest
             set
             {
                 available = value;
-                if(available)
-                    OnAvailable?.Invoke();
+                OnAvailable?.Invoke(active);
             }
         }
 
@@ -83,8 +82,7 @@ public class Quest : MonoBehaviour, IQuest
             set
             {
                 active = value;
-                if (active)
-                    OnActive?.Invoke();
+                OnActive?.Invoke(active);
             }
         }
 
@@ -96,8 +94,7 @@ public class Quest : MonoBehaviour, IQuest
                 completed = value;
                 Active = false;
                 Available = false;
-                if(completed)
-                    OnComplete?.Invoke();
+                OnComplete?.Invoke(completed);
             }
         }
 
@@ -108,30 +105,29 @@ public class Quest : MonoBehaviour, IQuest
             {
                 failed = value;
                 Active = false;
-                if(failed)
-                    OnFailed?.Invoke();
+                OnFailed?.Invoke(failed);
             }
         }
 
-        public Action OnAvailable
+        public Action<bool> OnAvailable
         {
             get => _onAvailable;
             set => _onAvailable = value;
         }
 
-        public Action OnActive
+        public Action<bool> OnActive
         {
             get => _onActive;
             set => _onActive = value;
         }
 
-        public Action OnComplete
+        public Action<bool> OnComplete
         {
             get => _onComplete;
             set => _onComplete = value;
         }
 
-        public Action OnFailed
+        public Action<bool> OnFailed
         {
             get => _onFailed;
             set => _onFailed = value;
