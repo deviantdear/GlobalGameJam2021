@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class QuestTrigger_UseInProximity : QuestTrigger
 {
-    [SerializeField] private string triggerTag = "player";
-    [SerializeField] private string useKey = "E";
+    [SerializeField] private string triggerTag = "Player";
+    [SerializeField] private string useKey = "Interact";
     private bool isInProximity = false;
 
     private void Update()
@@ -17,15 +17,40 @@ public class QuestTrigger_UseInProximity : QuestTrigger
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag(triggerTag))
+            isInProximity = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(triggerTag))
+            isInProximity = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        
         if (other.collider.CompareTag(triggerTag))
             isInProximity = true;
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnCollisionExit2D(Collision2D other)
     {
         if (other.collider.CompareTag(triggerTag))
+            isInProximity = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag(triggerTag))
+            isInProximity = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag(triggerTag))
             isInProximity = false;
     }
 }
