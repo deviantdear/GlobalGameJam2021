@@ -555,6 +555,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!224 &1819887826 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7400652985214192148, guid: 840f1a7e36f33bb4e8ef78e04d9d5adc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7400652986673479754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1952351899
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +613,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7400652985214192148, guid: 840f1a7e36f33bb4e8ef78e04d9d5adc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00003982189
+      objectReference: {fileID: 0}
     - target: {fileID: 7400652986122696430, guid: 840f1a7e36f33bb4e8ef78e04d9d5adc,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -615,6 +626,11 @@ PrefabInstance:
     - target: {fileID: 7400652986122696430, guid: 840f1a7e36f33bb4e8ef78e04d9d5adc,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7400652986122696430, guid: 840f1a7e36f33bb4e8ef78e04d9d5adc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7400652986542805016, guid: 840f1a7e36f33bb4e8ef78e04d9d5adc,
@@ -632,6 +648,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7400652987088731928, guid: 840f1a7e36f33bb4e8ef78e04d9d5adc,
+        type: 3}
+      propertyPath: activeQuestListContainer
+      value: 
+      objectReference: {fileID: 1819887826}
     - target: {fileID: 7400652987088731931, guid: 840f1a7e36f33bb4e8ef78e04d9d5adc,
         type: 3}
       propertyPath: m_LocalPosition.x

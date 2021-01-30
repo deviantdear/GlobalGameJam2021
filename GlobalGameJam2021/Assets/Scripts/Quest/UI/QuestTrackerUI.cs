@@ -6,7 +6,8 @@ using UnityEngine;
 public class QuestTrackerUI : MonoBehaviour
 {
     [SerializeField] private QuestItemUI questItemUIPrefab = null;
-    [SerializeField] private Transform activeQuestList = null;
+    [SerializeField] private Transform activeQuestListContainer = null;
+    [SerializeField] private Dictionary<IQuest, QuestItemUI> spawnedUi = new Dictionary<IQuest, QuestItemUI>();
 
     private void Start()
     {
@@ -20,18 +21,36 @@ public class QuestTrackerUI : MonoBehaviour
 
     void UpdateActiveQuestList(QuestTracker.QuestUpdateArgs updateArgs)
     {
-        ClearContainer(activeQuestList);
-        foreach (var item in QuestTracker.Instance.ActiveQuests)
+        foreach (var item in updateArgs.Activated)
         {
-            Instantiate(questItemUIPrefab, activeQuestList).Set(item.Value);
+            if (!spawnedUi.ContainsKey(item))
+            {
+                spawnedUi.Add(
+                    item, 
+                    Instantiate(questItemUIPrefab, activeQuestListContainer));
+                spawnedUi[item].Set(item);
+            }
         }
+        
+        foreach (var item in updateArgs.Completed)
+            RemoveItem(item);
+        foreach (var item in updateArgs.Failed)
+            RemoveItem(item);
+    }
+
+    void RemoveItem(IQuest item)
+    {
+        if(!spawnedUi.ContainsKey(item))
+            return;
+        Destroy(spawnedUi[item].gameObject);
+        spawnedUi.Remove(item);
     }
 
     void ClearContainer(Transform container)
     {
-        foreach (Transform child in container)
+        foreach (var item in spawnedUi)
         {
-            Destroy(child);
+            Destroy(item.Value.gameObject);
         }
     }
     
