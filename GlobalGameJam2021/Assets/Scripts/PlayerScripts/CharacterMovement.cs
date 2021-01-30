@@ -26,7 +26,6 @@ namespace CharacterBehaviour
         private void FixedUpdate()
         {
             //Movement
-            
             rb.MovePosition(rb.position + direction.normalized * speed * Time.fixedDeltaTime);
         }
     }
