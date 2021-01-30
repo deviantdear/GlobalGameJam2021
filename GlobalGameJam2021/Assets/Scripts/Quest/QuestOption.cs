@@ -72,7 +72,7 @@ public class QuestOption : MonoBehaviour, IQuestOption
         }
     }
 
-    public void Select()
+    public virtual void Select()
     {
         if (completeQuest)
             quest.Completed = true;
