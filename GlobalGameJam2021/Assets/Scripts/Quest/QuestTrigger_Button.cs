@@ -1,18 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class QuestTrigger_Button : MonoBehaviour
+public class QuestTrigger_Button : QuestTrigger
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button questTriggerButton = null;
+
+    private void Start()
     {
-        
+        questTriggerButton.onClick.AddListener(Trigger);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        questTriggerButton.onClick.RemoveListener(Trigger);
     }
 }
