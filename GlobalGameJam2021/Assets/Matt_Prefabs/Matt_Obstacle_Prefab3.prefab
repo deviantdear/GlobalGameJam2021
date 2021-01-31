@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 7326769358395146964}
   - component: {fileID: 7963488894217709906}
   - component: {fileID: 8283585402602902305}
+  - component: {fileID: 2543818951829600269}
   m_Layer: 0
   m_Name: Matt_Floor_Trap
   m_TagString: Matt_Obstacle
@@ -106,7 +107,8 @@ SpriteRenderer:
   m_SortingLayerID: -348311009
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2f4460e875c802498c56677f592a91a, type: 3}
+  m_Sprite: {fileID: -7921649188387484213, guid: aebabc7f9f81c9c4b9a01cda1ab76c71,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -178,6 +180,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleRigidBody: {fileID: 7326769358395146964}
   gameController: {fileID: 0}
+--- !u!95 &2543818951829600269
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138984993964700886}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c4e4764c48e8cf40a1f7a9f6da93252, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9026612317646801168
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +212,7 @@ GameObject:
   - component: {fileID: 541549934525295316}
   - component: {fileID: 3090748013043230293}
   - component: {fileID: 2878438754099533931}
+  - component: {fileID: 6523967488030544920}
   m_Layer: 0
   m_Name: Matt_Floor_Trap (1)
   m_TagString: Matt_Obstacle
@@ -252,7 +274,8 @@ SpriteRenderer:
   m_SortingLayerID: -348311009
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2f4460e875c802498c56677f592a91a, type: 3}
+  m_Sprite: {fileID: -7921649188387484213, guid: aebabc7f9f81c9c4b9a01cda1ab76c71,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -324,3 +347,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleRigidBody: {fileID: 541549934525295316}
   gameController: {fileID: 0}
+--- !u!95 &6523967488030544920
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9026612317646801168}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c4e4764c48e8cf40a1f7a9f6da93252, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
