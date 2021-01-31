@@ -9,6 +9,11 @@ TagManager:
   - Matt_Controller
   - Matt_Spawner
   - Matt_Win
+  - Galaga_Player
+  - Galaga_Enemy
+  - Galaga_Player_Bullet
+  - Galaga_Enemy_Bullet
+  - Galaga_Controller
   layers:
   - Default
   - TransparentFX
