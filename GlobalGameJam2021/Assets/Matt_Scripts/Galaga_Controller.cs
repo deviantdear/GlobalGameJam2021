@@ -37,6 +37,7 @@ public class Galaga_Controller : MonoBehaviour
 
     [SerializeField] AudioSource winSound;
     [SerializeField] AudioSource loseSound;
+    [SerializeField] AudioSource deathSound;
     [SerializeField] AudioSource musicPlayer;
 
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class Galaga_Controller : MonoBehaviour
         musicPlayer.loop = true;
         playerHasWon = false;
         gameOver = false;
-        gameActive = true;
+        gameActive = true;     
 
         leftFlipped = false;
         rightFlipped = false;
@@ -60,6 +61,11 @@ public class Galaga_Controller : MonoBehaviour
         currentPlayerLives = maxPlayerLives;
 
         player = GameObject.FindGameObjectWithTag("Galaga_Player").GetComponent<Galaga_Player>();
+
+        if (player.renderer.enabled == false)
+        {
+            player.renderer.enabled = true;
+        }
 
         enemies = GameObject.FindGameObjectsWithTag("Galaga_Enemy");
         enemiesRemaining = enemies.Length - 1;
@@ -118,9 +124,16 @@ public class Galaga_Controller : MonoBehaviour
     {
         gameStatusText.text = "Game Over - Press R To Resart";
         musicPlayer.Pause();
-        loseSound.Play();
+        deathSound.Play();
+        Invoke("PlayLoseSound", .4f);
+        player.renderer.enabled = false;
         gameOver = true;
         gameActive = false;
+    }
+
+    void PlayLoseSound()
+    {
+        loseSound.Play();
     }
 
     public void DecreaseEnemyCount()
@@ -245,8 +258,9 @@ public class Galaga_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.R) && gameActive == false)
+        if (Input.GetKey(KeyCode.R) && gameActive == false && !playerHasWon)
         {
+            loseSound.Stop();
             player.Initialize();
             DestroyAllEnemies();
             Initialize();

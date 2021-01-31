@@ -21,6 +21,7 @@ public class Galaga_Player : MonoBehaviour
 
     Vector3 startingPosition;
 
+    [SerializeField] public Renderer renderer;
 
     void Start()
     {
@@ -59,6 +60,7 @@ public class Galaga_Player : MonoBehaviour
         }
 
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
