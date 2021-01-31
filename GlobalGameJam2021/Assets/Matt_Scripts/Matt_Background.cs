@@ -9,7 +9,7 @@ public class Matt_Background : MonoBehaviour
 
     [SerializeField] private Matt_Controller gameController;
 
-    private float offScreenLimit = -25;
+    private float offScreenLimit = -100;
 
     // Start is called before the first frame update
     void Start()

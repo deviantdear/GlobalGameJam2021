@@ -174,7 +174,7 @@ public class Galaga_Enemy : MonoBehaviour
             canShoot = false;
             // spawn enemy bullet
             Instantiate(enemyBullet, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - this.gameObject.transform.localScale.y, 0f), Quaternion.identity);
-            Debug.Log("Enemy Fired Bullet");
+            //Debug.Log("Enemy Fired Bullet");
         }
     }
 

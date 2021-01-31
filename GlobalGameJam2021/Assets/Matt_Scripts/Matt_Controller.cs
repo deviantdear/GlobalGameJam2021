@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Matt_Controller : MonoBehaviour
+public class Matt_Controller : QuestTrigger
 {
     private float basePlayerJumpVelocity;
     [SerializeField] private float playerJumpVelocity;
@@ -26,6 +26,8 @@ public class Matt_Controller : MonoBehaviour
     [SerializeField] AudioSource winSound;
     [SerializeField] AudioSource loseSound;
     [SerializeField] AudioSource musicPlayer;
+    [SerializeField] private GameObject turnOffOnWin = null;
+    [SerializeField] private GameObject overWorld = null;
 
     void Initialize()
     {
@@ -40,7 +42,7 @@ public class Matt_Controller : MonoBehaviour
         gameOver = false;
         score = 0;
         obstacleScoreValue = 10;
-        scoreToWin = 600;
+        scoreToWin = 100;
 
         scoreText.text = "Score: " + score;
         gameStatusText.text = "";    
@@ -146,6 +148,9 @@ public class Matt_Controller : MonoBehaviour
             gameOver = true;
             playerJumpVelocity = 0;
             obstacleMoveVelcoity = 0f;
+            Trigger();
+            turnOffOnWin?.SetActive(false);
+            overWorld?.SetActive(true);
         }
     }
 
