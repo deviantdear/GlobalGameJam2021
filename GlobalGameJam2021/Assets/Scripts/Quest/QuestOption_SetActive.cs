@@ -14,7 +14,7 @@ public class QuestOption_SetActive : QuestOption
     {
         base.Select();
         objectToSet?.SetActive(setting);
-        objectToSet2.SetActive(setting2);
-        objectToSet3.SetActive(setting3);
+        objectToSet2?.SetActive(setting2);
+        objectToSet3?.SetActive(setting3);
     }
 }

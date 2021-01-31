@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightsOut : MonoBehaviour {
+public class LightsOut : QuestTrigger {
     public List<GameObject> TilesObjs;
     public int SizeX, SizeY;
     public GameObject[,] Tiles;
@@ -10,6 +10,8 @@ public class LightsOut : MonoBehaviour {
     public float TimeLimit;
 
     public static LightsOut instance;
+    [SerializeField] private GameObject turnOffOnWin = null;
+    [SerializeField] private GameObject overWorld = null;
     private AudioSource AudioS;
 
     private void Awake() {
@@ -67,6 +69,13 @@ public class LightsOut : MonoBehaviour {
             if (TimeLimit == 0) {
                 Failure = true;
             }
+        }
+
+        if (Victory || Failure)
+        {
+            Trigger();
+            turnOffOnWin?.SetActive(false);
+            overWorld?.SetActive(true);
         }
     }
 
