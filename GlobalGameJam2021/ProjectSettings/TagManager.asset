@@ -57,3 +57,6 @@ TagManager:
   - name: GameObjects
     uniqueID: 3946656287
     locked: 0
+  - name: MinigameLayer
+    uniqueID: 3781413191
+    locked: 0
