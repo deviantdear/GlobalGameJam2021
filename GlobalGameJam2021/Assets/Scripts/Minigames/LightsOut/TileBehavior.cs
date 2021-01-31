@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class TileBehavior : MonoBehaviour {
     public bool Active = false;
+    public bool[] ValidTargets = new bool[8];
     public int xPos, yPos;
     public TileType Type;
 
-    private GameObject Controller, Obj;
+    private GameObject Obj;
     private SpriteRenderer Rendy;
-    private LightsOut Board;
-    public List<GameObject> Targets;
-    //private float Scale = 1;
-    private bool[] ValidTargets = new bool[8];
 
     public enum TileType {
         Blank,
@@ -27,16 +24,12 @@ public class TileBehavior : MonoBehaviour {
         Obj = this.gameObject;
         Rendy = Obj.GetComponent<SpriteRenderer>();
 
-        //Controller = GameObject.Find("LightsOutController");
-        Board = LightsOut.instance.GetComponent<LightsOut>();
-
         switch (Type) {
             case TileType.Circle:
                 for (int i = 0; i < ValidTargets.Length; i++) {
                     ValidTargets[i] = true;
                 }
 
-                getTargets(ValidTargets);
                 break;
 
             case TileType.Diamond:
@@ -48,7 +41,6 @@ public class TileBehavior : MonoBehaviour {
                     }
                 }
 
-                getTargets(ValidTargets);
                 break;
 
             case TileType.Squares:
@@ -60,7 +52,6 @@ public class TileBehavior : MonoBehaviour {
                     }
                 }
 
-                getTargets(ValidTargets);
                 break;
 
             case TileType.Triangle:
@@ -72,7 +63,6 @@ public class TileBehavior : MonoBehaviour {
                     }
                 }
 
-                getTargets(ValidTargets);
                 break;
         }
     }
@@ -87,38 +77,10 @@ public class TileBehavior : MonoBehaviour {
     }
 
     void OnMouseDown () {
-        Active = !Active;
+        if (Type != TileType.Blank) {
+            Active = !Active;
 
-        foreach (GameObject tile in Targets) {
-            TileBehavior tmp = tile.GetComponent<TileBehavior>();
-            tmp.Active = !tmp.Active;
-        }
-    }
-
-    private void getTargets(bool[] targets) {
-        if (yPos-1 >= 0 && targets[0]) { // Top
-            Targets.Add(Board.Tiles[xPos,yPos-1]);
-        }
-        if (xPos+1 < Board.Size-1 && yPos-1 >= 0 && targets[1]) { // Top Right
-            Targets.Add(Board.Tiles[xPos+1,yPos-1]);
-        }
-        if (xPos+1 < Board.Size-1 && targets[2]) { // Right
-            Targets.Add(Board.Tiles[xPos+1,yPos]);
-        }
-        if (xPos+1 < Board.Size-1 && yPos+1 < Board.Size-1 && targets[3]) { // Bottom Right
-            Targets.Add(Board.Tiles[xPos+1,yPos+1]);
-        }
-        if (yPos+1 < Board.Size-1 && targets[4]) { // Bottom
-            Targets.Add(Board.Tiles[xPos,yPos+1]);
-        }
-        if (xPos-1 >= 0 && yPos < Board.Size-1 && targets[5]) { // Bottom Left
-            Targets.Add(Board.Tiles[xPos-1,yPos+1]);
-        }
-        if (xPos-1 >= 0 && targets[6]) { // Left
-            Targets.Add(Board.Tiles[xPos-1,yPos]);
-        }
-        if (xPos-1 >= 0 && yPos-1 >= 0 && targets[7]) { // Top Left
-            Targets.Add(Board.Tiles[xPos-1,yPos-1]);
+            LightsOut.FlipTiles(xPos, yPos, ValidTargets);
         }
     }
 }
