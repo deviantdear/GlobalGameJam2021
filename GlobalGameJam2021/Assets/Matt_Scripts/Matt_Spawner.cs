@@ -12,6 +12,7 @@ public class Matt_Spawner : MonoBehaviour
     int tiersToIncreasePrefabDifficulty;
     [SerializeField] private GameObject winObject;
     [SerializeField] private Matt_Controller gameController;
+    [SerializeField] private GameObject cloud;
 
     [SerializeField] private int tickCount;
 
@@ -93,6 +94,13 @@ public class Matt_Spawner : MonoBehaviour
 
                 GameObject obstacleSpawned = obstacles[obstacleType];
 
+                int cloudSpawnChance = Random.Range(0, 5);
+                if (cloudSpawnChance == 0)
+                {
+                    float cloudHeight = Random.Range(7.5f, 12.0f);
+                    Instantiate(cloud, new Vector3(this.gameObject.transform.position.x, cloudHeight, 0f), Quaternion.identity);
+                }
+
                 Instantiate(obstacleSpawned, new Vector3(this.gameObject.transform.position.x, 0f, 0f), Quaternion.identity);
 
                 prefabsSpawnedTotal++;
@@ -103,7 +111,7 @@ public class Matt_Spawner : MonoBehaviour
                 var children = obstacleSpawned.transform.root.GetComponentsInChildren<Transform>();
                 obstaclesInPrefab = children.Length - 1;
 
-                Debug.Log("Obstacles Spawned: " + obstaclesInPrefab);
+                //Debug.Log("Obstacles Spawned: " + obstaclesInPrefab);
 
                 //foreach (var child in children)
                 //{

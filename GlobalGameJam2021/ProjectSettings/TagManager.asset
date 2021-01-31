@@ -9,41 +9,49 @@ TagManager:
   - Matt_Controller
   - Matt_Spawner
   - Matt_Win
+
   - TrashCan
   - Trash
+
+  - Galaga_Player
+  - Galaga_Enemy
+  - Galaga_Player_Bullet
+  - Galaga_Enemy_Bullet
+  - Galaga_Controller
+
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  -
   - Water
   - UI
-  - 
-  - 
+  -
+  -
   - Matt_Platform
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -56,4 +64,7 @@ TagManager:
     locked: 0
   - name: GameObjects
     uniqueID: 3946656287
+    locked: 0
+  - name: MinigameLayer
+    uniqueID: 3781413191
     locked: 0

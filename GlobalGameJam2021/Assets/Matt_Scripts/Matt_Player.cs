@@ -13,12 +13,17 @@ public class Matt_Player : MonoBehaviour
     [SerializeField] private float jumpVelocity;
     [SerializeField] private bool isOnGround = false;
 
+    [SerializeField] AudioSource hitSound;
+    [SerializeField] AudioSource jumpSound;
 
-
+    [SerializeField] public Animator animator;
+    float startAnimationSpeed;
+    
     // Start is called before the first frame update
     void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("Matt_Controller").GetComponent<Matt_Controller>();
+        startAnimationSpeed = animator.speed;
         //jumpVelocity = gameController.GetPlayerJumpVelocity();
     }
 
@@ -27,9 +32,15 @@ public class Matt_Player : MonoBehaviour
     {
             //isOnGround = CheckGround();
         jumpVelocity = gameController.GetPlayerJumpVelocity();
+        
+        if (gameController.GetGameActive() && animator.speed !=  startAnimationSpeed)
+        {
+            animator.speed = startAnimationSpeed;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && CheckGround())
         {
+            if (gameController.GetGameActive()) { jumpSound.Play(); }
             playerRigidBody.velocity = Vector2.up * jumpVelocity;
         }
         else if (isPlayerAlive)
@@ -44,6 +55,7 @@ public class Matt_Player : MonoBehaviour
         isPlayerAlive = false;
         jumpVelocity = gameController.GetObstacleMoveVelocity();
         playerRigidBody.velocity = Vector2.up * jumpVelocity;
+
     }
 
 
@@ -51,11 +63,14 @@ public class Matt_Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Matt_Obstacle")
         {
+            animator.speed = 0;
+            hitSound.Play();
             gameController.GameOver();
         }
         else if (collision.gameObject.tag == "Matt_Win")
         {
-            Debug.Log("Hit Win");
+            animator.speed = 0;
+            //Debug.Log("Hit Win");
             gameController.PlayerWins();
         }
     }

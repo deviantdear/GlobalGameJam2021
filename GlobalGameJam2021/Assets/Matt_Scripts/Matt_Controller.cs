@@ -21,9 +21,18 @@ public class Matt_Controller : MonoBehaviour
 
     [SerializeField] Matt_Spawner spawner;
 
+    [SerializeField] GameObject background;
+
+    [SerializeField] AudioSource winSound;
+    [SerializeField] AudioSource loseSound;
+    [SerializeField] AudioSource musicPlayer;
 
     void Initialize()
     {
+        loseSound.Stop();
+        musicPlayer.Play();
+        musicPlayer.loop = true;
+
         basePlayerJumpVelocity = 15f;
         playerJumpVelocity = 15f;
         obstacleMoveVelcoity = 8f;
@@ -31,10 +40,10 @@ public class Matt_Controller : MonoBehaviour
         gameOver = false;
         score = 0;
         obstacleScoreValue = 10;
-        scoreToWin = 650;
+        scoreToWin = 600;
 
         scoreText.text = "Score: " + score;
-        gameStatusText.text = "";
+        gameStatusText.text = "";    
     }
 
     // Start is called before the first frame update
@@ -116,6 +125,8 @@ public class Matt_Controller : MonoBehaviour
     {
         if (gameActive)
         {
+            musicPlayer.Pause();
+            winSound.Play();
             gameActive = false;
             gameStatusText.text = "You Win!";
             obstacleMoveVelcoity = 0f;
@@ -127,6 +138,8 @@ public class Matt_Controller : MonoBehaviour
     {
         if (gameActive && !gameOver)
         {
+            musicPlayer.Pause();
+            Invoke("PlayGameoverSound", .2f);
             //Debug.Log("Game Over");
             gameStatusText.text = "Game Over - Press R to Restart";
             gameActive = false;
@@ -136,6 +149,10 @@ public class Matt_Controller : MonoBehaviour
         }
     }
 
+    void PlayGameoverSound()
+    {
+        loseSound.Play();
+    }
 
     public void DeleteAllObstacles()
     {
