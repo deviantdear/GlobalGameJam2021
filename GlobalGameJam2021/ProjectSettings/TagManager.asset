@@ -69,3 +69,12 @@ TagManager:
   - name: Galaga_GameObjects
     uniqueID: 3218207475
     locked: 0
+  - name: Ground
+    uniqueID: 1827850991
+    locked: 0
+  - name: Background
+    uniqueID: 2769731607
+    locked: 0
+  - name: GameObjects
+    uniqueID: 1890390823
+    locked: 0
