@@ -57,4 +57,5 @@ public interface IQuest
     /// Options added manually or later on as they are triggered.
     /// </summary>
     List<IQuestOption> QuestOptions { get; set; }
+    Sprite SubjectImage { get; set; }
 }
