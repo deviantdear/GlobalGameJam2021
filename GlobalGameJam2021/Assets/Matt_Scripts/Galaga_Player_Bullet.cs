@@ -14,8 +14,12 @@ public class Galaga_Player_Bullet : MonoBehaviour
 
     private float yBoundary = 45;
 
+    [SerializeField] AudioSource spawnSound;
+
     void Start()
     {
+
+        spawnSound.Play();
         gameController = GameObject.FindGameObjectWithTag("Galaga_Controller").GetComponent<Galaga_Controller>();
         //bulletAnimator = this.gameObject.GetComponent<Animator>();
         //bulletAnimator.speed /= 8;
@@ -28,8 +32,11 @@ public class Galaga_Player_Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Galaga_Enemy")
         {
+            collision.gameObject.GetComponent<Galaga_Enemy>().PlaySound();
+            collision.gameObject.GetComponent<Galaga_Enemy>().Disable();
+            //collision.gameObject.SetActive(false);
             gameController.ChangeScore(collision.gameObject.GetComponent<Galaga_Enemy>().GetScoreValue());
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject, .2f);
             gameController.DecreaseEnemyCount();
             Destroy(this.gameObject);
         }

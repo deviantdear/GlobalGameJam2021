@@ -23,11 +23,13 @@ public class Galaga_Enemy : MonoBehaviour
     [SerializeField] float shotDelayOffset;
     [SerializeField] float shotDelay;
     [SerializeField] float shotTimer;
-     bool isFront;
+    bool isFront;
+    bool isDisabled = false;
 
     float startingX;
     float startingY;
 
+    [SerializeField] AudioSource hitSound;
     [SerializeField] SpriteRenderer renderer;
     [SerializeField] Sprite[] SpriteOptions;
 
@@ -129,7 +131,7 @@ public class Galaga_Enemy : MonoBehaviour
             gameController.leftFlipped = false;
         }  
 
-        if (canShoot && isFront && gameController.GetGameActive())
+        if (canShoot && isFront && gameController.GetGameActive() && !isDisabled)
         {
             Shoot();
         }    
@@ -146,7 +148,26 @@ public class Galaga_Enemy : MonoBehaviour
 
     }
 
-    void Shoot()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Galaga_Player_Bullet")
+        {
+            //hitSound.Play();
+        }
+    }
+
+
+    public void Disable()
+    {
+        isDisabled = true;    
+    }
+
+    public void PlaySound()
+    {
+        hitSound.Play();
+    }    
+
+        void Shoot()
     {
         if (canShoot)
         {
@@ -172,7 +193,7 @@ public class Galaga_Enemy : MonoBehaviour
     {
         isFront = IsFrontEnemy();
 
-        if (gameController.GetGameActive())
+        if (gameController.GetGameActive() && !isDisabled)
         {
             rb.MovePosition(rb.position + direction * enemyMoveSpeed * Time.fixedDeltaTime);
         }

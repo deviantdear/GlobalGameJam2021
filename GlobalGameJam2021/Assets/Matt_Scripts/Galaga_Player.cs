@@ -17,6 +17,8 @@ public class Galaga_Player : MonoBehaviour
     float shotDelay = .75f;
     float shotTimer = 0f;
 
+    [SerializeField] AudioSource hitSound;
+
     Vector3 startingPosition;
 
 
@@ -58,6 +60,13 @@ public class Galaga_Player : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Galaga_Enemy_Bullet")
+        {
+            hitSound.Play();
+        }
+    }
 
     private void FixedUpdate()
     {

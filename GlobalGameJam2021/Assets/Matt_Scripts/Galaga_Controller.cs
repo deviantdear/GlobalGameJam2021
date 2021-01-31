@@ -35,14 +35,20 @@ public class Galaga_Controller : MonoBehaviour
     public bool gameActive = true;
 
 
+    [SerializeField] AudioSource winSound;
+    [SerializeField] AudioSource loseSound;
+    [SerializeField] AudioSource musicPlayer;
+
     // Start is called before the first frame update
     void Start()
-    {
+    {      
         Initialize();
     }
 
     private void Initialize()
     {
+        musicPlayer.Play();
+        musicPlayer.loop = true;
         playerHasWon = false;
         gameOver = false;
         gameActive = true;
@@ -111,6 +117,8 @@ public class Galaga_Controller : MonoBehaviour
     public void GameOver()
     {
         gameStatusText.text = "Game Over - Press R To Resart";
+        musicPlayer.Pause();
+        loseSound.Play();
         gameOver = true;
         gameActive = false;
     }
@@ -124,14 +132,16 @@ public class Galaga_Controller : MonoBehaviour
         {
             if (currentWave < wavesNeededtoWin)
             {
-                Destroy(enemies[enemiesRemaining].transform.parent.gameObject);
+                Destroy(enemies[enemiesRemaining].transform.parent.gameObject, .2f);
 
                 //Destroy(EnemyWaves[currentWave - 1].gameObject);
 
                 currentWave++;
                 gameStatusText.text = "Wave: " + currentWave;
 
-                Instantiate(EnemyWaves[currentWave-1], new Vector3(0, 0, 0f), Quaternion.identity);
+                Invoke("SpawnWave", 1f);
+
+                //Instantiate(EnemyWaves[currentWave-1], new Vector3(0, 0, 0f), Quaternion.identity);
 
                 leftFlipped = false;
                 rightFlipped = false;
@@ -148,8 +158,15 @@ public class Galaga_Controller : MonoBehaviour
         }
     }
 
+    void SpawnWave()
+    {
+        Instantiate(EnemyWaves[currentWave - 1], new Vector3(0, 0, 0f), Quaternion.identity);
+    }
+
     void PlayerWin()
     {
+        musicPlayer.Pause();
+        winSound.Play();
         gameStatusText.text = "You Win!";
         playerHasWon = true;
         gameActive = false;

@@ -9,11 +9,14 @@ public class Galaga_Enemy_Bullet : MonoBehaviour
     public Rigidbody2D rb;
     private Galaga_Controller gameController;
 
+    [SerializeField] AudioSource spawnSound;
+
     private float yBoundary = 45;
 
     // Start is called before the first frame update
     void Start()
     {
+        spawnSound.Play();
         gameController = GameObject.FindGameObjectWithTag("Galaga_Controller").GetComponent<Galaga_Controller>();
         //bulletAnimator = this.gameObject.GetComponent<Animator>();
         //bulletAnimator.speed /= 8;
@@ -28,7 +31,7 @@ public class Galaga_Enemy_Bullet : MonoBehaviour
         {
             gameController.DecreasePlayerHealth();
             Destroy(this.gameObject);
-            Debug.Log("Enemy Hit Player");
+            //Debug.Log("Enemy Hit Player");
         }
 
         if (collision.gameObject.tag == "Galaga_Enemy")
