@@ -9,6 +9,7 @@ public class LightsOut : MonoBehaviour {
     public bool Victory = false;
 
     public static LightsOut instance;
+    private AudioSource AudioS;
 
     private void Awake() {
         if (instance != null) {
@@ -21,6 +22,7 @@ public class LightsOut : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         Tiles = new GameObject[SizeX, SizeY];
+        AudioS = this.GetComponent<AudioSource>();
         int size = SizeX*SizeY;
 
         for (int i = 0; i < size; i++) {
@@ -53,7 +55,8 @@ public class LightsOut : MonoBehaviour {
             }
         }
 
-        if (pass) {
+        if (pass && !Victory) {
+            AudioS.Play();
             Victory = true;
         }
     }
