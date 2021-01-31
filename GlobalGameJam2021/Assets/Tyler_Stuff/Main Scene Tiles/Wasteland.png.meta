@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: d6259b9e29bb01c4483f364239a83d9b
+guid: 63673445160266f4b9ec2585e25cb247
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5834500526828686082
-    second: Finish_0
+      213: 4726590157931818631
+    second: Wasteland_0
   - first:
-      213: -994707286809002968
-    second: Finish_1
+      213: -6346125799290699523
+    second: Wasteland_1
   - first:
-      213: -4422866686785849718
-    second: Finish_2
+      213: -6872005039379783386
+    second: Wasteland_2
   - first:
-      213: -66553899169541683
-    second: Finish_3
-  - first:
-      213: -3600769941516164659
-    second: Finish_4
-  - first:
-      213: 4598569235593664542
-    second: Finish_5
-  - first:
-      213: 6398490287396529828
-    second: Finish_6
-  - first:
-      213: 8313565709441654513
-    second: Finish_7
+      213: -4011471245282589162
+    second: Wasteland_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -56,7 +44,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -101,12 +89,12 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -149,70 +137,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Finish_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef4fb80fea0b70fa0800000000000000
-      internalID: -5834500526828686082
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Finish_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82cb14a2ef61232f0800000000000000
-      internalID: -994707286809002968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Finish_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8678358e22de92c0800000000000000
-      internalID: -4422866686785849718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Finish_3
+      name: Wasteland_0
       rect:
         serializedVersion: 2
         x: 0
@@ -226,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc11591d49d831ff0800000000000000
-      internalID: -66553899169541683
+      spriteID: 78e2262c4b8389140800000000000000
+      internalID: 4726590157931818631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_4
+      name: Wasteland_1
       rect:
         serializedVersion: 2
         x: 32
@@ -247,35 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc1660ed0de770ec0800000000000000
-      internalID: -3600769941516164659
+      spriteID: df0065175380ee7a0800000000000000
+      internalID: -6346125799290699523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1899920b5661df30800000000000000
-      internalID: 4598569235593664542
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Finish_6
+      name: Wasteland_2
       rect:
         serializedVersion: 2
         x: 0
@@ -289,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a6ae0704010cc850800000000000000
-      internalID: 6398490287396529828
+      spriteID: 621e21d73dbb1a0a0800000000000000
+      internalID: -6872005039379783386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_7
+      name: Wasteland_3
       rect:
         serializedVersion: 2
         x: 32
@@ -310,8 +214,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fe532037f7bf5370800000000000000
-      internalID: 8313565709441654513
+      spriteID: 616cc36f7246458c0800000000000000
+      internalID: -4011471245282589162
       vertices: []
       indices: 
       edges: []
@@ -319,7 +223,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: be6352025ceee5240aad216d2d916c65
+    spriteID: 7ea96d9e2bfb5e842b6ad7946729af9c
     internalID: 0
     vertices: []
     indices: 

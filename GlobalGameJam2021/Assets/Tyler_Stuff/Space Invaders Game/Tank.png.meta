@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: d6259b9e29bb01c4483f364239a83d9b
+guid: 963adb6a12c9c574a92ac53725ea830f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5834500526828686082
-    second: Finish_0
+      213: 4326872430171513394
+    second: Tank_0
   - first:
-      213: -994707286809002968
-    second: Finish_1
+      213: -5423691617833806011
+    second: Tank_1
   - first:
-      213: -4422866686785849718
-    second: Finish_2
+      213: 4881786594697243456
+    second: Tank_2
   - first:
-      213: -66553899169541683
-    second: Finish_3
+      213: -2795835861870796852
+    second: Tank_3
   - first:
-      213: -3600769941516164659
-    second: Finish_4
+      213: -4757407859075400767
+    second: Tank_4
   - first:
-      213: 4598569235593664542
-    second: Finish_5
+      213: 3712889037594902034
+    second: Tank_5
   - first:
-      213: 6398490287396529828
-    second: Finish_6
+      213: 3834719253641818563
+    second: Tank_6
   - first:
-      213: 8313565709441654513
-    second: Finish_7
+      213: -6264851868023687085
+    second: Tank_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -56,7 +56,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -101,12 +101,12 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Finish_0
+      name: Tank_0
       rect:
         serializedVersion: 2
         x: 0
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef4fb80fea0b70fa0800000000000000
-      internalID: -5834500526828686082
+      spriteID: 232edccec832c0c30800000000000000
+      internalID: 4326872430171513394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_1
+      name: Tank_1
       rect:
         serializedVersion: 2
         x: 32
@@ -184,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82cb14a2ef61232f0800000000000000
-      internalID: -994707286809002968
+      spriteID: 54790c3a53d2bb4b0800000000000000
+      internalID: -5423691617833806011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_2
+      name: Tank_2
       rect:
         serializedVersion: 2
         x: 64
@@ -205,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8678358e22de92c0800000000000000
-      internalID: -4422866686785849718
+      spriteID: 04b61360b079fb340800000000000000
+      internalID: 4881786594697243456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_3
+      name: Tank_3
       rect:
         serializedVersion: 2
         x: 0
@@ -226,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc11591d49d831ff0800000000000000
-      internalID: -66553899169541683
+      spriteID: ccf94eab8123339d0800000000000000
+      internalID: -2795835861870796852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_4
+      name: Tank_4
       rect:
         serializedVersion: 2
         x: 32
@@ -247,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc1660ed0de770ec0800000000000000
-      internalID: -3600769941516164659
+      spriteID: 1cbb82c02ca4afdb0800000000000000
+      internalID: -4757407859075400767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_5
+      name: Tank_5
       rect:
         serializedVersion: 2
         x: 64
@@ -268,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1899920b5661df30800000000000000
-      internalID: 4598569235593664542
+      spriteID: 21e394078e4d68330800000000000000
+      internalID: 3712889037594902034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_6
+      name: Tank_6
       rect:
         serializedVersion: 2
         x: 0
@@ -289,14 +289,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a6ae0704010cc850800000000000000
-      internalID: 6398490287396529828
+      spriteID: 3c1fbae08d8a73530800000000000000
+      internalID: 3834719253641818563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Finish_7
+      name: Tank_7
       rect:
         serializedVersion: 2
         x: 32
@@ -310,8 +310,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fe532037f7bf5370800000000000000
-      internalID: 8313565709441654513
+      spriteID: 358710c2b66ce09a0800000000000000
+      internalID: -6264851868023687085
       vertices: []
       indices: 
       edges: []
@@ -319,7 +319,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: be6352025ceee5240aad216d2d916c65
+    spriteID: 85540617d4b876a41b62088948e6392d
     internalID: 0
     vertices: []
     indices: 
