@@ -5,19 +5,33 @@ using UnityEngine;
 public class AudioTrigger : MonoBehaviour
 {
     public GameObject Player;
-    public AudioSource regionSong;
+    public AudioClip regionSong;
     [SerializeField]
-    private Vector2 distance;
+    private float distance;
     public bool isMetal;
+    public int inRoom = 0;
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        CheckPosition();
+
+        distance = Vector3.Distance(transform.position, Player.transform.position);
     }
-    public void CheckPosition()
+    IEnumerator CheckPosition()
     {
-        
+        if (inRoom < 1)
+        {
+
+            if (Vector3.Distance(transform.position, Player.transform.position) < 1)
+            {
+                AudioManager.Instance.PlayMusicWithFade(regionSong, 1);
+                inRoom++;
+                isMetal = true;
+            }
+        }
+
+        yield return new WaitForSeconds(.1f);
     }
 
 }
