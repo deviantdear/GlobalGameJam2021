@@ -9,6 +9,8 @@ TagManager:
   - Matt_Controller
   - Matt_Spawner
   - Matt_Win
+  - TrashCan
+  - Trash
   layers:
   - Default
   - TransparentFX
