@@ -7,9 +7,11 @@ public class TileBehavior : MonoBehaviour {
     public bool[] ValidTargets = new bool[8];
     public int xPos, yPos;
     public TileType Type;
+    public Sprite[] Sprites;
 
     private GameObject Obj;
     private SpriteRenderer Rendy;
+    private AudioSource AudioS;
 
     public enum TileType {
         Blank,
@@ -23,9 +25,11 @@ public class TileBehavior : MonoBehaviour {
     void Start() {
         Obj = this.gameObject;
         Rendy = Obj.GetComponent<SpriteRenderer>();
+        AudioS = this.GetComponent<AudioSource>();
 
         switch (Type) {
             case TileType.Circle:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = Sprites[0];
                 for (int i = 0; i < ValidTargets.Length; i++) {
                     ValidTargets[i] = true;
                 }
@@ -33,6 +37,7 @@ public class TileBehavior : MonoBehaviour {
                 break;
 
             case TileType.Diamond:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = Sprites[1];
                 for (int i = 0; i < ValidTargets.Length; i++) {
                     if (i%2 == 1) {
                         ValidTargets[i] = true;
@@ -44,6 +49,7 @@ public class TileBehavior : MonoBehaviour {
                 break;
 
             case TileType.Squares:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = Sprites[2];
                 for (int i = 0; i < ValidTargets.Length; i++) {
                     if (i%2 == 0) {
                         ValidTargets[i] = true;
@@ -55,6 +61,7 @@ public class TileBehavior : MonoBehaviour {
                 break;
 
             case TileType.Triangle:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = Sprites[3];
                 for (int i = 0; i < ValidTargets.Length; i++) {
                     if (i%3 == 0) {
                         ValidTargets[i] = true;
@@ -79,6 +86,7 @@ public class TileBehavior : MonoBehaviour {
     void OnMouseDown () {
         if (Type != TileType.Blank) {
             Active = !Active;
+            AudioS.Play();
 
             LightsOut.FlipTiles(xPos, yPos, ValidTargets);
         }
