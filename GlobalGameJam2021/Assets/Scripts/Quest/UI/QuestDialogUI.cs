@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestDialogUI : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class QuestDialogUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI summaryField = null;
     [SerializeField] private QuestOptionUI optionPrefab = null;
     [SerializeField] private Transform optionListContainer = null;
+    [SerializeField] private Image subjectImage = null;
 
     public void Set(IQuest questData)
     {
@@ -24,6 +26,17 @@ public class QuestDialogUI : MonoBehaviour
             descriptionField.text = questData.Description;
         if (summaryField)
             summaryField.text = questData.Summary;
+        if (subjectImage)
+        {
+            if (questData.SubjectImage)
+            {
+                subjectImage.sprite = questData.SubjectImage;
+                subjectImage.color = Color.white;
+            }
+            else
+                subjectImage.color = Color.clear;
+        }
+        
 
         foreach (var option in questData.QuestOptions)
         {
