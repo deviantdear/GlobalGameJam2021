@@ -18,11 +18,11 @@ public class Galaga_Enemy : MonoBehaviour
     private Galaga_Controller gameController;
     [SerializeField] GameObject enemyBullet;
 
-    [SerializeField] bool canShoot = true;
+    [SerializeField] bool canShoot = false;
     [SerializeField] float shotDelayOffset;
     [SerializeField] float shotDelay;
     [SerializeField] float shotTimer;
-    [SerializeField] bool isFront;
+     bool isFront;
 
     float startingX;
     float startingY;
@@ -37,18 +37,32 @@ public class Galaga_Enemy : MonoBehaviour
 
     public bool IsFrontEnemy()
     {
-        //RaycastHit2D hit = Physics2D.BoxCast(this.GetComponent<BoxCollider2D>().bounds.center, this.GetComponent<BoxCollider2D>().bounds.size, 0f, Vector2.down, 10f);
-        Debug.DrawRay(transform.position, Vector2.down * 10);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,  10f);
-        if (!(hit.collider.gameObject.tag == "Galaga_Enemy"))
+        //return true;
+        ////RaycastHit2D hit = Physics2D.BoxCast(this.GetComponent<BoxCollider2D>().bounds.center, this.GetComponent<BoxCollider2D>().bounds.size, 0f, Vector2.down, 10f);
+
+        //RaycastHit2D hit = Physics2D.BoxCast(this.GetComponent<BoxCollider2D>().bounds.center, this.GetComponent<BoxCollider2D>().bounds.size, 0f, Vector2.down, 10f, default);
+        Vector3 castPos = new Vector3(this.transform.position.x, this.transform.position.y - this.transform.localScale.y, this.transform.position.z);
+
+        RaycastHit2D hit = Physics2D.Raycast(castPos, Vector2.down,  10f, default);
+
+        Debug.DrawRay(castPos, Vector2.down * 10);
+
+        if (hit.collider != null)
         {
-               // do not shoot, blocked by other enemy
-            return true;
+            if (hit.collider.CompareTag("Galaga_Enemy"))
+            {
+                // do not shoot, blocked by other enemy
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         else
         {
-            return false;
+            return true;
         }
     }
 
@@ -63,10 +77,10 @@ public class Galaga_Enemy : MonoBehaviour
 
     void Initialize()
     {
-        shotDelayOffset = Random.Range(1, 3f);
-        shotDelay = Random.Range(4, 7.5f) + shotDelayOffset;
+        shotDelayOffset = Random.Range(5, 15f);
+        shotDelay = Random.Range(0, 7.5f) + shotDelayOffset;
         shotTimer = shotDelay;
-        canShoot = true;
+        canShoot = false;
 
         startingX = this.gameObject.transform.position.x;
         startingY = this.gameObject.transform.position.y;
@@ -84,7 +98,7 @@ public class Galaga_Enemy : MonoBehaviour
 
         isFront = IsFrontEnemy();
 
-        float xOffset = Random.Range(0, .0005f);
+        float xOffset = Random.Range(0, .00005f);
         int xOffsetSign = Random.Range(0, 2);
         if (xOffsetSign == 0) { xOffset *= -1; }
 
@@ -109,23 +123,16 @@ public class Galaga_Enemy : MonoBehaviour
             gameController.FlipEnemies();
             gameController.rightFlipped = true;
             gameController.leftFlipped = false;
-        }
-
-        
+        }  
 
         if (canShoot && isFront)
         {
             Shoot();
-        }
-        
-        
-
+        }    
         if (!canShoot)
         {
-
             shotTimer -= Time.deltaTime;
         }
-
         if (shotTimer <= 0)
         {
             shotTimer = shotDelay;
@@ -144,12 +151,6 @@ public class Galaga_Enemy : MonoBehaviour
             Instantiate(enemyBullet, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - this.gameObject.transform.localScale.y, 0f), Quaternion.identity);
             Debug.Log("Enemy Fired Bullet");
         }
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
     }
 
     public int GetScoreValue()

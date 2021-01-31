@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1951121095938575349}
   m_Layer: 0
   m_Name: Galaga_Enemy_Bullet
-  m_TagString: Galaga_Player_Bullet
+  m_TagString: Galaga_Enemy_Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,6 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a84b8f4472fc89439a92eb05ddd8cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletMoveSpeed: 40
+  bulletMoveSpeed: 20
   direction: {x: 0, y: 0}
   rb: {fileID: 874393893413432920}

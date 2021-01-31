@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Galaga_Enemy_Bullet : MonoBehaviour
 {
-    [SerializeField] private float bulletMoveSpeed = 40f;
+    [SerializeField] private float bulletMoveSpeed = 20f;
     public Vector2 direction;
     public Rigidbody2D rb;
     private Galaga_Controller gameController;
@@ -32,6 +32,17 @@ public class Galaga_Enemy_Bullet : MonoBehaviour
             Destroy(this.gameObject);
             Debug.Log("Enemy Hit Player");
         }
+
+        if (collision.gameObject.tag == "Galaga_Enemy")
+        {
+            Physics2D.IgnoreCollision(collision.collider, this.GetComponent<BoxCollider2D>());
+        }
+
+        if (collision.gameObject.tag == "Galaga_Player_Bullet")
+        {
+            Physics2D.IgnoreCollision(collision.collider, this.GetComponent<BoxCollider2D>());
+        }
+
     }
 
     // Update is called once per frame

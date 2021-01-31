@@ -21,6 +21,8 @@ public class Galaga_Controller : MonoBehaviour
     public bool leftFlipped = false;
     public bool rightFlipped = false;
 
+    bool playerHasWon = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +66,7 @@ public class Galaga_Controller : MonoBehaviour
     void PlayerWin()
     {
         gameStatusText.text = "You Win!";
+        playerHasWon = true;
     }
 
     public int GetEnemyStartingDirection()
