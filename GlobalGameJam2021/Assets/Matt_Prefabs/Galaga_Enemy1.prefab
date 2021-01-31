@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd432c189af8a1948a5a4e537a616add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMoveSpeed: 10
+  enemyMoveSpeed: 7
   direction: {x: 0, y: 0}
   rb: {fileID: 7733390551108103809}
   startingDirection: 0
@@ -106,6 +106,10 @@ MonoBehaviour:
   scoreValue: 10
   enemyBullet: {fileID: 874393893413432923, guid: ba1b90887bf74ab46aaf20f90fde725a,
     type: 3}
+  canShoot: 1
+  shotDelayOffset: 0
+  shotDelay: 0
+  shotTimer: 0
 --- !u!61 &8779879779312742880
 BoxCollider2D:
   m_ObjectHideFlags: 0

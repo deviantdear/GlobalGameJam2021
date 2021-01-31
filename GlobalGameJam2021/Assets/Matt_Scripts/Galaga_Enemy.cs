@@ -42,15 +42,36 @@ public class Galaga_Enemy : MonoBehaviour
         ////RaycastHit2D hit = Physics2D.BoxCast(this.GetComponent<BoxCollider2D>().bounds.center, this.GetComponent<BoxCollider2D>().bounds.size, 0f, Vector2.down, 10f);
 
         //RaycastHit2D hit = Physics2D.BoxCast(this.GetComponent<BoxCollider2D>().bounds.center, this.GetComponent<BoxCollider2D>().bounds.size, 0f, Vector2.down, 10f, default);
-        Vector3 castPos = new Vector3(this.transform.position.x, this.transform.position.y - this.transform.localScale.y, this.transform.position.z);
 
-        RaycastHit2D hit = Physics2D.Raycast(castPos, Vector2.down,  10f, default);
+        //Vector3 castPosLeft = new Vector3(this.transform.position.x - this.transform.localScale.x/2, this.transform.position.y - this.transform.localScale.y, this.transform.position.z);
+        //RaycastHit2D hit1 = Physics2D.Raycast(castPosLeft, Vector2.down,  12f, default);
+        //Debug.DrawRay(castPosLeft, Vector2.down * 12);
 
-        Debug.DrawRay(castPos, Vector2.down * 10);
+        Vector3 castPosMid = new Vector3(this.transform.position.x, this.transform.position.y - this.transform.localScale.y, this.transform.position.z);
+        //RaycastHit2D hit2 = Physics2D.Raycast(castPosMid, Vector2.down, 12f, default);
+        RaycastHit2D hit2 = Physics2D.BoxCast(castPosMid, this.GetComponent<BoxCollider2D>().bounds.size * 1.1f, 0f, Vector2.down, 10f, default);
+        //Debug.DrawRay(castPosMid, Vector2.down * 12);
 
-        if (hit.collider != null)
+        //Vector3 castPosRight = new Vector3(this.transform.position.x + this.transform.localScale.x / 2, this.transform.position.y - this.transform.localScale.y, this.transform.position.z);
+        //RaycastHit2D hit3 = Physics2D.Raycast(castPosRight, Vector2.down, 12f, default);
+        //Debug.DrawRay(castPosRight, Vector2.down * 12);
+
+
+        //if (hit1.collider != null)
+        //{
+        //    if (hit1.collider.CompareTag("Galaga_Enemy"))
+        //    {
+        //        // do not shoot, blocked by other enemy
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
+        if (hit2.collider != null)
         {
-            if (hit.collider.CompareTag("Galaga_Enemy"))
+            if (hit2.collider.CompareTag("Galaga_Enemy"))
             {
                 // do not shoot, blocked by other enemy
                 return false;
@@ -60,7 +81,19 @@ public class Galaga_Enemy : MonoBehaviour
                 return true;
             }
         }
-        else
+        //else if (hit3.collider != null)
+        //{
+        //    if (hit3.collider.CompareTag("Galaga_Enemy"))
+        //    {
+        //        // do not shoot, blocked by other enemy
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
+        else // no collisions detected
         {
             return true;
         }
@@ -77,9 +110,12 @@ public class Galaga_Enemy : MonoBehaviour
 
     void Initialize()
     {
-        shotDelayOffset = Random.Range(5, 15f);
-        shotDelay = Random.Range(0, 7.5f) + shotDelayOffset;
-        shotTimer = shotDelay;
+        enemyMoveSpeed = gameController.GetEnemeySpeed();
+
+        shotDelayOffset = Random.Range(1, 25f);
+        shotDelay = Random.Range(3, 7.5f) + shotDelayOffset;
+        //shotTimer = shotDelay;
+        shotTimer = shotDelayOffset;
         canShoot = false;
 
         startingX = this.gameObject.transform.position.x;

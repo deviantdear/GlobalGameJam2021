@@ -21,6 +21,10 @@ public class Galaga_Controller : MonoBehaviour
     public bool leftFlipped = false;
     public bool rightFlipped = false;
 
+    float enemySpeed = 6f;
+    [SerializeField] int wavesNeededtoWin;
+    int currentWave = 1;
+    [SerializeField] GameObject[] EnemyWaves;
     bool playerHasWon = false;
 
 
@@ -34,10 +38,15 @@ public class Galaga_Controller : MonoBehaviour
     {
         enemies = GameObject.FindGameObjectsWithTag("Galaga_Enemy");
         enemiesRemaining = enemies.Length - 1;
+
         score = 0;
         scoreText.text = "Score: " + score;
+        gameStatusText.text = "Wave: " + currentWave;
 
+        wavesNeededtoWin = EnemyWaves.Length;
         //SetEnemyBounds();
+
+        Instantiate(EnemyWaves[currentWave-1], new Vector3(0, 0, 0f), Quaternion.identity);
 
         enemyStartingDirection = Random.Range(0, 2);
 
@@ -54,13 +63,29 @@ public class Galaga_Controller : MonoBehaviour
     public void DecreaseEnemyCount()
     {
         enemies = GameObject.FindGameObjectsWithTag("Galaga_Enemy");
-        enemiesRemaining = enemies.Length;
+        enemiesRemaining = enemies.Length - 1;
 
         if (enemiesRemaining <= 0)
         {
-            PlayerWin();
-        }
+            if (currentWave < wavesNeededtoWin)
+            {
+                Destroy(EnemyWaves[currentWave - 1].gameObject);
 
+                currentWave++;
+                gameStatusText.text = "Wave: " + currentWave;
+
+                Instantiate(EnemyWaves[currentWave-1], new Vector3(0, 0, 0f), Quaternion.identity);
+
+                enemies = GameObject.FindGameObjectsWithTag("Galaga_Enemy");
+                enemiesRemaining = enemies.Length - 1;
+
+                enemySpeed += 2;
+            }
+            else 
+            {
+                PlayerWin();
+            }
+        }
     }
 
     void PlayerWin()
@@ -101,6 +126,12 @@ public class Galaga_Controller : MonoBehaviour
         score += value;
         scoreText.text = "Score: " + score;
     }
+
+    public float GetEnemeySpeed()
+    {
+        return enemySpeed;
+    }
+
 
     public int GetScore()
     {
