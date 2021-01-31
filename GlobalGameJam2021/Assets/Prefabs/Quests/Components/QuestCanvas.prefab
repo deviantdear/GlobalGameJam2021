@@ -697,4 +697,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questItemUIPrefab: {fileID: 816111895806895454, guid: 3a934697005c67743b6222367b648349,
     type: 3}
-  activeQuestList: {fileID: 7400652985214192148}
+  activeQuestListContainer: {fileID: 7400652985214192148}

@@ -15,6 +15,7 @@ public class Quest : MonoBehaviour, IQuest
     [SerializeField] private bool completed;
     [SerializeField] private bool active;
     [SerializeField] private bool failed;
+    [SerializeField] private Sprite subjectImage;
     #endregion
 
     #region PropertyContainers
@@ -25,6 +26,7 @@ public class Quest : MonoBehaviour, IQuest
     private Action<bool> _onActive;
     private List<IQuestOption> _questOptions = new List<IQuestOption>();
     private Action<bool> _onFailed;
+
     #endregion
 
 
@@ -137,6 +139,12 @@ public class Quest : MonoBehaviour, IQuest
         {
             get => _questOptions;
             set => _questOptions = value;
+        }
+
+        public Sprite SubjectImage
+        {
+            get => subjectImage;
+            set => subjectImage = value;
         }
 
         #endregion
