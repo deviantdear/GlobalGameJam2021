@@ -21,7 +21,7 @@ public class QuestTrackerUI : MonoBehaviour
 
     void UpdateActiveQuestList(QuestTracker.QuestUpdateArgs updateArgs)
     {
-        foreach (var item in updateArgs.Activated)
+        foreach (var item in updateArgs.Available)
         {
             if (item.Available && !spawnedUi.ContainsKey(item))
             {
