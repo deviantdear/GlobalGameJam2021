@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Galaga_Controller : MonoBehaviour
+public class Galaga_Controller : QuestTrigger
 {
     [SerializeField] private int score;
     [SerializeField] private int enemiesRemaining;
@@ -39,6 +39,8 @@ public class Galaga_Controller : MonoBehaviour
     [SerializeField] AudioSource loseSound;
     [SerializeField] AudioSource deathSound;
     [SerializeField] AudioSource musicPlayer;
+    [SerializeField] private GameObject turnOffOnWin = null;
+    [SerializeField] private GameObject overWorld = null;
 
     // Start is called before the first frame update
     void Start()
@@ -129,6 +131,10 @@ public class Galaga_Controller : MonoBehaviour
         player.renderer.enabled = false;
         gameOver = true;
         gameActive = false;
+        
+        Trigger();
+        overWorld?.SetActive(true);
+        turnOffOnWin?.SetActive(false);
     }
 
     void PlayLoseSound()
@@ -183,6 +189,9 @@ public class Galaga_Controller : MonoBehaviour
         gameStatusText.text = "You Win!";
         playerHasWon = true;
         gameActive = false;
+        Trigger();
+        overWorld?.SetActive(true);
+        turnOffOnWin?.SetActive(false);
     }
 
     public bool GetGameActive()
