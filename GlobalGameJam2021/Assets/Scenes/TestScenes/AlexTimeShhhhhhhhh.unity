@@ -313,7 +313,7 @@ PrefabInstance:
     - target: {fileID: 3159852800754242713, guid: 642e9aa5b4356a0428e2d8efb5c05af3,
         type: 3}
       propertyPath: TotalTrash
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6814143088962348996, guid: 642e9aa5b4356a0428e2d8efb5c05af3,
         type: 3}

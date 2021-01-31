@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashLogic : MonoBehaviour {
+    public AudioClip SFX;
     private bool grabbed = false;
     private int Width = 32, Height = 32;
     private GameObject Can;
+    public Sprite[] Sprites;
 
     // Start is called before the first frame update
     void Start() {
         Can = this.transform.parent.gameObject;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = Sprites[Random.Range(0, Sprites.Length-1)];
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class TrashLogic : MonoBehaviour {
         GameObject other = collision.gameObject;
 
         if (other.CompareTag("TrashCan") && !grabbed) {
+            other.GetComponent<CanLogic>().PlaySound(SFX);
             CanLogic canLogic = other.GetComponent<CanLogic>();
             canLogic.TotalTrash--;
             Destroy(this.gameObject);
