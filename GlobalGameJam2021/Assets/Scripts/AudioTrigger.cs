@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class AudioTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject Player;
+    public AudioSource regionSong;
+    [SerializeField]
+    private Vector2 distance;
+    public bool isMetal;
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        
+    }
+    public void CheckPosition()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
