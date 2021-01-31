@@ -16,16 +16,23 @@ public class Galaga_Controller : MonoBehaviour
     [SerializeField] float formationWidth;
     [SerializeField] float formationHeight;
 
+    [SerializeField] Galaga_Player player;
     [SerializeField] GameObject enemyFormationBox;
+    [SerializeField] GameObject playerHearts;
 
     public bool leftFlipped = false;
     public bool rightFlipped = false;
+
+    int maxPlayerLives;
+    int currentPlayerLives;
 
     float enemySpeed = 6f;
     [SerializeField] int wavesNeededtoWin;
     int currentWave = 1;
     [SerializeField] GameObject[] EnemyWaves;
-    bool playerHasWon = false;
+    public bool playerHasWon = false;
+    public bool gameOver = false;
+    public bool gameActive = true;
 
 
     // Start is called before the first frame update
@@ -36,14 +43,28 @@ public class Galaga_Controller : MonoBehaviour
 
     private void Initialize()
     {
+        playerHasWon = false;
+        gameOver = false;
+        gameActive = true;
+
+        leftFlipped = false;
+        rightFlipped = false;
+
+        maxPlayerLives = 3;
+        currentPlayerLives = maxPlayerLives;
+
+        player = GameObject.FindGameObjectWithTag("Galaga_Player").GetComponent<Galaga_Player>();
+
         enemies = GameObject.FindGameObjectsWithTag("Galaga_Enemy");
         enemiesRemaining = enemies.Length - 1;
 
         score = 0;
         scoreText.text = "Score: " + score;
-        gameStatusText.text = "Wave: " + currentWave;
+       
 
+        currentWave = 1;
         wavesNeededtoWin = EnemyWaves.Length;
+        gameStatusText.text = "Wave: " + currentWave;
         //SetEnemyBounds();
 
         Instantiate(EnemyWaves[currentWave-1], new Vector3(0, 0, 0f), Quaternion.identity);
@@ -58,6 +79,40 @@ public class Galaga_Controller : MonoBehaviour
         {
             enemyStartingDirection = 1;
         }
+
+        var heartChildren = playerHearts.transform.root.GetComponentsInChildren<Transform>();
+        int heartCount = heartChildren.Length - 1;
+
+        for (int i = 1; i <= heartCount; i++)
+        {
+            heartChildren[i].gameObject.GetComponent<Renderer>().enabled = true;
+        }
+
+    }
+
+
+    public void DecreasePlayerHealth()
+    {
+
+        var heartChildren = playerHearts.transform.root.GetComponentsInChildren<Transform>();
+        int heartCount = heartChildren.Length - 1;
+
+        heartChildren[currentPlayerLives].gameObject.GetComponent<Renderer>().enabled = false;
+        //heartChildren[currentPlayerLives].gameObject.SetActive(false);
+
+        currentPlayerLives--;
+
+        if (currentPlayerLives <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        gameStatusText.text = "Game Over - Press R To Resart";
+        gameOver = true;
+        gameActive = false;
     }
 
     public void DecreaseEnemyCount()
@@ -69,12 +124,17 @@ public class Galaga_Controller : MonoBehaviour
         {
             if (currentWave < wavesNeededtoWin)
             {
-                Destroy(EnemyWaves[currentWave - 1].gameObject);
+                Destroy(enemies[enemiesRemaining].transform.parent.gameObject);
+
+                //Destroy(EnemyWaves[currentWave - 1].gameObject);
 
                 currentWave++;
                 gameStatusText.text = "Wave: " + currentWave;
 
                 Instantiate(EnemyWaves[currentWave-1], new Vector3(0, 0, 0f), Quaternion.identity);
+
+                leftFlipped = false;
+                rightFlipped = false;
 
                 enemies = GameObject.FindGameObjectsWithTag("Galaga_Enemy");
                 enemiesRemaining = enemies.Length - 1;
@@ -92,6 +152,12 @@ public class Galaga_Controller : MonoBehaviour
     {
         gameStatusText.text = "You Win!";
         playerHasWon = true;
+        gameActive = false;
+    }
+
+    public bool GetGameActive()
+    {
+        return gameActive;
     }
 
     public int GetEnemyStartingDirection()
@@ -138,10 +204,35 @@ public class Galaga_Controller : MonoBehaviour
         return score;
     }
 
+    public void DestroyAllEnemies()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Galaga_Enemy");
+        enemiesRemaining = enemies.Length - 1;
+
+        for (int i = 0; i < enemiesRemaining; i++)
+        {
+            Destroy(enemies[i].gameObject);
+        }
+
+        Destroy(enemies[enemiesRemaining].transform.parent.gameObject);
+        Destroy(enemies[enemiesRemaining].gameObject);
+
+
+        //foreach (var enemy in enemies)
+        //{
+        //    Destroy(enemy.gameObject);
+        //    //enemy.GetComponent<Galaga_Enemy>().FlipDirection();
+        //}
+    }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKey(KeyCode.R) && gameActive == false)
+        {
+            player.Initialize();
+            DestroyAllEnemies();
+            Initialize();
+        }
     }
 }

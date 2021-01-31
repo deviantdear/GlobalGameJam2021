@@ -45,4 +45,9 @@ public class Galaga_Player_Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    void Update()
+    {
+        if (!gameController.GetGameActive()) { Destroy(this.gameObject); }
+    }
 }

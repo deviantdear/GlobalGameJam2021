@@ -8,6 +8,7 @@ public class Galaga_Player : MonoBehaviour
     [SerializeField] private float playerMoveSpeed = 5.0f;
     public Vector2 direction;
     public Rigidbody2D rb;
+    private Galaga_Controller gameController;
 
     private float xBoundary = 15;
     [SerializeField] bool canShoot = true;
@@ -16,13 +17,20 @@ public class Galaga_Player : MonoBehaviour
     float shotDelay = .75f;
     float shotTimer = 0f;
 
+    Vector3 startingPosition;
+
+
     void Start()
     {
+        startingPosition = transform.position;
+        gameController = GameObject.FindGameObjectWithTag("Galaga_Controller").GetComponent<Galaga_Controller>();
         Initialize();
     }
 
-    void Initialize()
+    public void Initialize()
     {
+        transform.position = startingPosition;
+        canShoot = true;
         shotTimer = shotDelay;
     }
 
@@ -53,11 +61,13 @@ public class Galaga_Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        //Movement
-        if ((direction.x > 0 && rb.position.x < xBoundary) || (direction.x < 0 && rb.position.x > -xBoundary))
+        if (gameController.GetGameActive())
         {
-            rb.MovePosition(rb.position + direction * playerMoveSpeed * Time.fixedDeltaTime);
+            //Movement
+            if ((direction.x > 0 && rb.position.x < xBoundary) || (direction.x < 0 && rb.position.x > -xBoundary))
+            {
+                rb.MovePosition(rb.position + direction * playerMoveSpeed * Time.fixedDeltaTime);
+            }
         }
     }
 

@@ -110,6 +110,11 @@ MonoBehaviour:
   shotDelayOffset: 0
   shotDelay: 0
   shotTimer: 0
+  renderer: {fileID: 8779879779312742882}
+  SpriteOptions:
+  - {fileID: 21300000, guid: a807d054d7751b84398ec1b0a7b58c15, type: 3}
+  - {fileID: 21300000, guid: 878f77ddb23693a45a5188d4407d376b, type: 3}
+  - {fileID: 21300000, guid: 3629d1edd45c30b43897acbd7880b6be, type: 3}
 --- !u!61 &8779879779312742880
 BoxCollider2D:
   m_ObjectHideFlags: 0

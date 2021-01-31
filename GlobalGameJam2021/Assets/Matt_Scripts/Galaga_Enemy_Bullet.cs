@@ -26,9 +26,7 @@ public class Galaga_Enemy_Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Galaga_Player")
         {
-            // gameController.ChangeScore(collision.gameObject.GetComponent<Galaga_Player>().GetScoreValue());
-            //Destroy(collision.gameObject);
-            //gameController.DecreaseEnemyCount();
+            gameController.DecreasePlayerHealth();
             Destroy(this.gameObject);
             Debug.Log("Enemy Hit Player");
         }
@@ -48,7 +46,7 @@ public class Galaga_Enemy_Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!gameController.GetGameActive()) { Destroy(this.gameObject); }
     }
 
     void FixedUpdate()
