@@ -14,10 +14,10 @@ public class Matt_Spawner : MonoBehaviour
     [SerializeField] private Matt_Controller gameController;
     [SerializeField] private GameObject cloud;
 
-    [SerializeField] private int tickCount;
+    [SerializeField] private float tickCount;
 
-    private int ticksBetweenSpawns;
-    private int minimumTicksBetweenSpawns; // hardest speed
+    private float ticksBetweenSpawns;
+    private float minimumTicksBetweenSpawns; // hardest speed
 
     private bool spawnedMaxObjects; // if the spawner has created enough objects to reach the score needed to win
 
@@ -41,10 +41,10 @@ public class Matt_Spawner : MonoBehaviour
 
         tiersToIncreasePrefabDifficulty = 0;
 
-        ticksBetweenSpawns = 1300;
-        minimumTicksBetweenSpawns = 700; // hardest speed
+        ticksBetweenSpawns = 2.5f;
+        minimumTicksBetweenSpawns = 1f; // hardest speed
 
-        tickCount = ticksBetweenSpawns - 200; // spwns the first object nearly immediately
+        tickCount = ticksBetweenSpawns - 2f; // spwns the first object nearly immediately
 
         spawnedMaxObjects = false; // if the spawner has created enough objects to reach the score needed to win
 
@@ -74,7 +74,7 @@ public class Matt_Spawner : MonoBehaviour
         {
             if (gameController.GetGameActive() && winSpawned == false)
             {
-                tickCount += 1;
+                tickCount += Time.deltaTime;
             }
 
             if (tickCount > ticksBetweenSpawns && !maxObjects)
