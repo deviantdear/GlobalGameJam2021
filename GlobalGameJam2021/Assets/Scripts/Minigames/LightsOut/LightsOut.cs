@@ -6,7 +6,8 @@ public class LightsOut : MonoBehaviour {
     public List<GameObject> TilesObjs;
     public int SizeX, SizeY;
     public GameObject[,] Tiles;
-    public bool Victory = false;
+    public bool Victory = false, Failure = false;
+    public float TimeLimit;
 
     public static LightsOut instance;
     private AudioSource AudioS;
@@ -58,6 +59,14 @@ public class LightsOut : MonoBehaviour {
         if (pass && !Victory) {
             AudioS.Play();
             Victory = true;
+        }
+
+        if (!Victory && !Failure) {
+            TimeLimit = TimeLimit-Time.deltaTime < 0 ? 0 : TimeLimit-Time.deltaTime;
+
+            if (TimeLimit == 0) {
+                Failure = true;
+            }
         }
     }
 

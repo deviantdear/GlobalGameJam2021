@@ -84,7 +84,7 @@ public class TileBehavior : MonoBehaviour {
     }
 
     void OnMouseDown () {
-        if (Type != TileType.Blank && !LightsOut.instance.Victory) {
+        if (Type != TileType.Blank && !LightsOut.instance.Victory && !LightsOut.instance.Failure) {
             Active = !Active;
             AudioS.Play();
 

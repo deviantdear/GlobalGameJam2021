@@ -12,7 +12,7 @@ public class TrashLogic : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         Can = this.transform.parent.gameObject;
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = Sprites[Random.Range(0, Sprites.Length-1)];
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = Sprites[Random.Range(0, Sprites.Length)];
     }
 
     // Update is called once per frame
