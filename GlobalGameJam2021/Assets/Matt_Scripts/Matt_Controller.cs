@@ -132,6 +132,9 @@ public class Matt_Controller : QuestTrigger
             gameActive = false;
             gameStatusText.text = "You Win!";
             obstacleMoveVelcoity = 0f;
+            Trigger();
+            turnOffOnWin?.SetActive(false);
+            overWorld?.SetActive(true);
         }
     }
 
