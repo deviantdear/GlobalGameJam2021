@@ -57,5 +57,12 @@ public interface IQuest
     /// Options added manually or later on as they are triggered.
     /// </summary>
     List<IQuestOption> QuestOptions { get; set; }
+    /// <summary>
+    /// Image that shows up in the dialog windows
+    /// </summary>
     Sprite SubjectImage { get; set; }
+    /// <summary>
+    /// Object to point at
+    /// </summary>
+    Transform SubjectTransform { get; set; }
 }

@@ -16,10 +16,13 @@ public class Quest : MonoBehaviour, IQuest
     [SerializeField] private bool active;
     [SerializeField] private bool failed;
     [SerializeField] private Sprite subjectImage;
+    [SerializeField] private bool playSound = false;
+    [SerializeField] private AudioClip questSound;
+    [SerializeField] private Transform subjectTransform;
     #endregion
 
     #region PropertyContainers
-    
+
     private Action<bool> _onAvailable;
     private Action<bool> _onBegin;
     private Action<bool> _onComplete;
@@ -147,6 +150,18 @@ public class Quest : MonoBehaviour, IQuest
             set => subjectImage = value;
         }
 
-        #endregion
+        public Transform SubjectTransform
+        {
+            get => subjectTransform;
+            set => subjectTransform = value;
+        }
+
+        public AudioClip QuestSound
+    {
+        get => questSound;
+        set => questSound = value;
+    }
+
+    #endregion
 
 }
