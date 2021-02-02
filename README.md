@@ -51,9 +51,7 @@ If you want to run the project in Unity you can follow the steps below
 > Vincent
 > Matt
 > Tyler 
-> Roger
 > Mike
-> Will
 > Alex
 > Isaac
 
