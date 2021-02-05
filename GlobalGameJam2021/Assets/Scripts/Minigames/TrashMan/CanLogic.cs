@@ -14,6 +14,7 @@ public class CanLogic : QuestTrigger {
     public int TotalTrash;
     public bool Victory = false;
     private bool Empty = false, Menu = false;
+    private Camera _camera = null;
 
     // Start is called before the first frame update
     void Start() {
@@ -35,8 +36,11 @@ public class CanLogic : QuestTrigger {
 
     // Update is called once per frame
     void Update() {
-        Vector2 pos = Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+        if (!_camera || !_camera.gameObject.activeInHierarchy)
+            _camera = Camera.main;
+        
+        Vector2 pos = _camera.ScreenToWorldPoint(
+            new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - _camera.transform.position.z));
         float dist = Vector2.Distance(pos, transform.position);
 
         if (TotalTrash <= 0 && !Victory && Empty) {

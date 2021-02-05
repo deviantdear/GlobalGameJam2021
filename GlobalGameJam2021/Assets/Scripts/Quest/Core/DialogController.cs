@@ -41,7 +41,7 @@ public class DialogController : MonoBehaviour
         if (_dialogUI == null)
             _dialogUI = Instantiate(dialogUIPrefab);
 
-        if (!dialogUIPrefab.isActiveAndEnabled)
+        if (_current == null)
         {
             _current = quest;
             _dialogUI.Set(quest);
