@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanLogic : MonoBehaviour {
+public class CanLogic : QuestTrigger {
+    [SerializeField] private GameObject turnOffOnWin = null;
+    [SerializeField] private GameObject overWorld = null;
+    [SerializeField] private Transform trashSpawnContainer = null;
     public GameObject Trash;
+    public Vector2 trashSpawnRange = new Vector2(16.5f, 9f);
     private GameObject MenuBox;
     private AudioSource AudioS;
     public Sprite EmptySprite, FullSprite;
@@ -21,11 +25,11 @@ public class CanLogic : MonoBehaviour {
         }
 
         for (int i = 0; i < TotalTrash; i++) {
-            Vector2 pos = new Vector2(transform.position.x+Random.Range(1, 16.5f),
-                transform.position.y-Random.Range(1, 9));
+            Vector2 pos = new Vector2(transform.position.x+Random.Range(1, trashSpawnRange.x),
+                transform.position.y-Random.Range(1, trashSpawnRange.y));
 
             GameObject tmp = Instantiate(Trash, pos, Quaternion.identity);
-            tmp.transform.SetParent(this.transform);
+            tmp.transform.SetParent(trashSpawnContainer);
         }
     }
 
@@ -59,6 +63,9 @@ public class CanLogic : MonoBehaviour {
            this.gameObject.GetComponent<SpriteRenderer>().sprite = FullSprite;
         } else if (Victory) {
             // Delete it or something idk
+            Trigger();
+            turnOffOnWin?.SetActive(false);
+            overWorld?.SetActive(true);
         }
     }
 

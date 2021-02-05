@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4381223151614882775}
   - component: {fileID: 1996568649645809623}
   - component: {fileID: 694184791870189323}
-  - component: {fileID: 1199983353850859939}
   m_Layer: 0
   m_Name: Trash
   m_TagString: Trash
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3805905826186226295}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -513554105
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3d9e7aae4a70c924ca60cb123c106fa5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,7 +94,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -124,28 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFX: {fileID: 8300000, guid: cdc5023e672f794478725aa156e2f59e, type: 3}
+  grabbed: 0
   Sprites:
   - {fileID: 21300000, guid: a807d054d7751b84398ec1b0a7b58c15, type: 3}
   - {fileID: 21300000, guid: 878f77ddb23693a45a5188d4407d376b, type: 3}
   - {fileID: 21300000, guid: 3629d1edd45c30b43897acbd7880b6be, type: 3}
---- !u!50 &1199983353850859939
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3805905826186226295}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  camera: {fileID: 0}
