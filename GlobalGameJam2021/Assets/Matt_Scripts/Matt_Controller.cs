@@ -17,7 +17,6 @@ public class Matt_Controller : QuestTrigger
     bool gameRestarted = false;
 
     [SerializeField] private Text gameStatusText;
-    [SerializeField] private Text scoreText;
 
     [SerializeField] Matt_Spawner spawner;
 
@@ -44,7 +43,7 @@ public class Matt_Controller : QuestTrigger
         obstacleScoreValue = 10;
         scoreToWin = 100;
 
-        scoreText.text = "Score: " + score;
+   
         gameStatusText.text = "";    
     }
 
@@ -80,7 +79,7 @@ public class Matt_Controller : QuestTrigger
     public void ChangeScore(int value)
     {
         score += value;
-        scoreText.text = "Score: " + score;
+        
     }
 
     public bool GetGameOver()

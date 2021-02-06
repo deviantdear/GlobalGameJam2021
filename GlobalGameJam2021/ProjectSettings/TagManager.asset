@@ -9,80 +9,65 @@ TagManager:
   - Matt_Controller
   - Matt_Spawner
   - Matt_Win
-
   - TrashCan
   - Trash
-
-  - Galaga_Player
-  - Galaga_Enemy
-  - Galaga_Player_Bullet
-  - Galaga_Enemy_Bullet
   - Galaga_Controller
-
+  - Galaga_Player
+  - Galaga_Player_Bullet
+  - Galaga_Enemy
+  - Galaga_Enemy_Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  -
+  - 
   - Water
   - UI
-  -
-  -
-  - Matt_Platform
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Matt_Ground
-    uniqueID: 325802701
-    locked: 0
-  - name: Matt_Background
-    uniqueID: 313837693
-    locked: 0
-  - name: Matt_GameObjects
-    uniqueID: 3946656287
-    locked: 0
-  - name: Galaga_Ground
-    uniqueID: 1628507523
-    locked: 0
-  - name: Galaga_Background
-    uniqueID: 3516387325
-    locked: 0
-  - name: Galaga_GameObjects
-    uniqueID: 3218207475
-    locked: 0
   - name: Ground
-    uniqueID: 1827850991
+    uniqueID: 2256499513
     locked: 0
   - name: Background
-    uniqueID: 2769731607
+    uniqueID: 3932715115
     locked: 0
   - name: GameObjects
-    uniqueID: 1890390823
+    uniqueID: 617684689
     locked: 0
-  - name: MinigameLayer
-    uniqueID: 3781413191
+  - name: Greg Ground
+    uniqueID: 3873551717
+    locked: 0
+  - name: Greg Background
+    uniqueID: 3602948803
+    locked: 0
+  - name: Greg GameObjects
+    uniqueID: 77172997
     locked: 0
